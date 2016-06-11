@@ -5,6 +5,7 @@ var Path = require('path');
 
 var myAlias = {
     components: Path.join(__dirname, '../src/components'),
+    'vux-components': 'vux/dist/components',
     state: Path.join(__dirname, '../src/vuex/state'),
     mutations: Path.join(__dirname, '../src/vuex/mutations'),
     store: Path.join(__dirname, '../src/vuex/store'),
