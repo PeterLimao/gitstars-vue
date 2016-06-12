@@ -3,5 +3,5 @@
  * @author PeterL
  */
 export default {
-
+    showNav: false
 };
