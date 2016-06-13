@@ -1,5 +1,5 @@
 <template>
-    <div id="more-panel">
+    <section id="more-panel">
         More
-    </div>
+    </section>
 </template>

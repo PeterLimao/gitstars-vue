@@ -3,19 +3,13 @@
 </style>
 <template>
     <div id="app">
-        <v-nav></v-nav>
-        <section>
-            <v-header></v-header>
-            <progress :percent.sync="myProgress.percent", :options="myProgress.options"></progress>
-            <router-view></router-view> 
-            <v-footer></v-footer>
-        </section>
+        <progress :percent.sync="myProgress.percent", :options="myProgress.options"></progress>
+        <router-view></router-view>
+        <v-footer></v-footer>
     </div>
 </template>
 <script>
-    import Header from 'components/header';
     import Footer from 'components/footer';
-    import Nav from 'components/nav';
     import Progress from 'vue-progressbar/vue-progressbar.vue';
 
     import Store from 'store';
@@ -61,9 +55,7 @@
             }
         },
         components: {
-            'v-header': Header,
             'v-footer': Footer,
-            'v-nav': Nav,
             Progress
         },
         store: Store

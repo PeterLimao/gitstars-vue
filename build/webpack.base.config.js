@@ -21,7 +21,7 @@ module.exports = {
     output: {
         path: './dist/assets/',
         filename: '[name].js',
-        chunkname: '[id].chunk.js'
+        chunkname: '[id].chunk.[hash].js'
     },
     module: {
         loaders: [
@@ -51,17 +51,11 @@ module.exports = {
         extensions: ['', '.js', '.vue', '.css'],
         alias: myAlias
     },
-    vue: {
-        loaders: {
-            css: ExtractTextPlugin.extract('css')
-        }
-    },
     babel: {
         presets: ['es2015', 'stage-0'],
         plugins: ['transform-runtime']
     },
     plugins: [
-        new ExtractTextPlugin('style.css'),
         new HtmlWebpackPlugin({
             filename: '../index.html',
             template: 'src/index.html',
