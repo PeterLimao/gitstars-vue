@@ -9,6 +9,7 @@
 
     .search-div {
         position: relative;
+        padding-left: 4px;
         margin: 0 auto;
         height: 35px;
         background: #fff;
@@ -22,13 +23,46 @@
         position: absolute;
         right: 5px;
     }
+
+    input {
+        outline: none;
+        border: 0;
+        height: 34px;
+        font-size: 18px;
+        width: 90%;
+    }
+
+    /*动态样式*/
+    .move {
+        text-align: left;
+    }
 </style>
 <template>
     <header>
-        <div class="search-div">
+        <div class="search-div" @click="setEdit(true)" :class="{'move': isEdit}">
             <i class="weui-icon weui_icon_search"></i>
-            <span>Search</span>
-            <i class="weui-icon weui_icon_clear"></i>
+            <span v-if="!isEdit">Search</span>
+            <input type="text" placeholder="Search" v-if="isEdit" @keyup.enter="execSearch" v-model="searchMsg" autofocus>
+            <i class="weui-icon weui_icon_clear" v-if="isEdit" @click.stop="setEdit(false)"></i>
         </div>
     </header>
 </template>
+<script>
+    export default {
+        data () {
+            return {
+                isEdit: false,
+                searchMsg: ''
+            }
+        },
+        methods: {
+            setEdit (param) {
+                this.isEdit = param;
+            },
+            execSearch () {
+                this.searchMsg = '';
+                console.log('go.....');
+            }
+        }
+    };
+</script>
