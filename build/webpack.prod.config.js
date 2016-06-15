@@ -1,5 +1,7 @@
 var Webpack = require('webpack');
+var WebpackDevServer = require('webpack-dev-server');
 var Config = require('./webpack.base.config');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 //Config.output.publicPath = '';
 
@@ -8,6 +10,12 @@ Config.plugins = (Config.plugins || []).concat([
         'process.env': {
             NODE_ENV: '"production"'
         }
+    }),
+    new HtmlWebpackPlugin({
+        filename: '../index.html',
+        template: 'src/index.html',
+        inject: true,
+        hash: true
     }),
     new Webpack.optimize.UglifyJsPlugin({
         compress: {

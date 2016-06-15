@@ -3,9 +3,7 @@
  * @author PeterL
  */
 import Vue from 'vue';
-import Vuex from 'vuex';
 import VueRouter from 'vue-router';
-import VueResource from 'vue-resource';
 import Progress from 'vue-progressbar';
 import Filter from './filter';
 import RouterMap from './router';
@@ -16,7 +14,6 @@ Vue.config.debug = process.env.NODE_ENV === 'production' ? false : true;
 
 Vue.use(Progress);
 Vue.use(VueRouter);
-Vue.use(VueResource);
 
 Filter(Vue);
 

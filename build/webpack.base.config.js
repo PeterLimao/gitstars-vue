@@ -1,5 +1,3 @@
-var Webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
 var Path = require('path');
 
 var myAlias = {
@@ -15,10 +13,10 @@ var myAlias = {
 
 module.exports = {
     entry: {
-        main: './src/main.js'
+        main: ['./src/main.js']
     },
     output: {
-        path: './dist/assets/',
+        path: Path.join(__dirname, '../dist/assets/'),
         filename: '[name].js',
         chunkname: '[id].chunk.[hash].js'
     },
@@ -53,13 +51,5 @@ module.exports = {
     babel: {
         presets: ['es2015', 'stage-0'],
         plugins: ['transform-runtime']
-    },
-    plugins: [
-        new HtmlWebpackPlugin({
-            filename: '../index.html',
-            template: 'src/index.html',
-            inject: true,
-            hash: true
-        })
-    ]
+    }
 };

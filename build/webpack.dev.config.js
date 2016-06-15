@@ -1,5 +1,39 @@
 var Config = require('./webpack.base.config');
+var Webpack = require('webpack');
+var WebpackDevServer = require('webpack-dev-server');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
+Config.entry.main.unshift("webpack-dev-server/client?http://localhost:8080/", "webpack/hot/dev-server");
+Config.plugins = (Config.plugins || []).concat([
+    new Webpack.HotModuleReplacementPlugin(),
+    new HtmlWebpackPlugin({
+        filename: 'index.html',
+        template: 'src/index.html',
+        inject: true,
+        hash: true
+    })
+]);
 Config.devtool = '#eval-source-map';
 
-module.exports = Config;
+var server = new WebpackDevServer(Webpack(Config), {
+    historyApiFallback: true,
+    hot: true,
+    inline: true,
+    proxy: {
+        '/api/*': {
+            target: 'https://gitstars.cn',
+            secure: false,
+            rewrite: function(req) {
+                console.log('---rewrite---' + req.url);
+                req.url = req.url.replace(/^\/api/, '');
+            }
+        }
+    }
+});
+
+server.listen(8080, function(err) {
+    if (err) {
+        console.log(err);
+    }
+    console.log('listen at localhost:8080');
+});
