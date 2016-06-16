@@ -8,6 +8,7 @@ import { API_ROOT } from './config';
 
 Vue.use(VueResource);
 
-Vue.http.options.crossOrigin = true;
-
-export const LoginResources = Vue.resource(API_ROOT + '/login');
+export const trendingLanResources = Vue.resource(API_ROOT + '/trending/languages.json');
+export const trendingListResources = Vue.resource(API_ROOT + '/trending.json');
+export const showcasesResources = Vue.resource(API_ROOT + '/showcases.json');
+export const showcasesDetailResources = Vue.resource(API_ROOT + '{/showcase_name}.json');
