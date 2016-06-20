@@ -22,7 +22,7 @@
     }
 </style>
 <template>
-    <nav v-show="isShowNav" transition="nav">
+    <div v-show="isShowNav" transition="nav">
         <ul>
             <li>
                 All
@@ -37,7 +37,7 @@
                 Ruby
             </li>
         </ul>
-    </nav>
+    </div>
 </template>
 <script>
     export default {
