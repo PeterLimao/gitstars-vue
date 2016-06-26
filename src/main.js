@@ -6,8 +6,8 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Filter from './filter';
 import RouterMap from './router';
-import Icono from 'icono/dist/icono.min';
-import Base from './assets/css/base';
+import './assets/css/base';
+import 'materialize-css/dist/css/materialize.min';
 
 Vue.config.debug = process.env.NODE_ENV === 'production' ? false : true;
 

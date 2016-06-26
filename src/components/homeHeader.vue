@@ -2,34 +2,40 @@
     /*基础样式*/
     header {
         display: flex;
-        box-shadow: 2px 2px 4px rgba(0,0,0,0.15);
+        color: #fff;
     }
 
     header .left, header .right{
         flex-grow: 1;
         text-align: center;
         line-height: 44px;
+        height: 44px;
     }
 
     .right i {
-        color: #04be02;
+        color: #fff;
+        padding-top: 8px;
     }
 
     header .main {
         flex-grow: 9;
     }
+
+    .vux-tab-item {
+        background: #673ab7;
+    }
 </style>
 <template>
-    <header>
+    <header class="deep-purple z-depth-1">
         <div class="left item">
             All
         </div>
-        <tab class="main item">
+        <tab class="main item" default-color="#fff" active-color="#fff">
             <tab-item :selected="true">Trending</tab-item>
             <tab-item :selected="false">Showcases</tab-item>
         </tab>
         <div class="right item" @click="showNav">
-            <i class="icono-hamburger"></i>
+            <i class="material-icons small">toc</i>
         </div>
     </header>
 </template>

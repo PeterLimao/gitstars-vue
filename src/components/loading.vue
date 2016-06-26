@@ -27,12 +27,16 @@
         margin-left: -18px;
         margin-top: -18px;
     }
+
+    .spinner-layer {
+        border-color: #673ab7;
+    }
 </style>
 <template>
     <div id="loading">
         <div class="outer">
             <div class="preloader-wrapper small active">
-                <div class="spinner-layer spinner-green-only">
+                <div class="spinner-layer">
                     <div class="circle-clipper left">
                         <div class="circle"></div>
                     </div>

@@ -41,11 +41,15 @@ module.exports = {
             {
                 test: /\.css$/,
                 loader: 'style!css'
+            },
+            {
+                test: /\.(woff|woff2|ttf|eot)$/,
+                loader: "url"
             }
         ]
     },
     resolve: {
-        extensions: ['', '.js', '.vue', '.css'],
+        extensions: ['', '.js', '.vue', '.css', '.json'],
         alias: myAlias
     },
     babel: {

@@ -2,63 +2,44 @@
     /*基本样式*/
     header {
         height: 44px;
-        box-shadow: 2px 2px 4px rgba(0,0,0,0.15);
-        background: #f3f3f3;
-        padding-top: 10px;
-    }
-
-    .search-div {
-        position: relative;
-        padding-left: 4px;
-        margin: 0 auto;
-        height: 35px;
         background: #fff;
-        width: 90%;
-        border-radius: 5px;
-        text-align: center;
-        line-height: 35px;
-    }
-
-    .weui_icon_clear {
-        position: absolute;
-        right: 5px;
+        padding-left: 20px;
+        padding-right: 20px;
+        display: flex;
     }
 
     input {
-        outline: none;
-        border: 0;
-        height: 34px;
-        font-size: 18px;
-        width: 90%;
+        margin-left: 10px;
+        font-size: 20px;
+        border: 0px;
+        padding: 10px 0;
+        height: 21px;
     }
 
-    /*动态样式*/
-    .move {
-        text-align: left;
+    i {
+        line-height: 44px;
+        color: #888;
+    }
+
+    input[type=text]:focus {
+        border-bottom-color: #673ab7;
+        box-shadow: 0 1px 0 0 #673ab7;
     }
 </style>
 <template>
-    <header>
-        <div class="search-div" @click="setEdit(true)" :class="{'move': isEdit}">
-            <i class="weui-icon weui_icon_search"></i>
-            <span v-if="!isEdit">Search</span>
-            <input type="text" placeholder="Search" v-if="isEdit" @keyup.enter="execSearch" v-model="searchMsg" autofocus>
-            <i class="weui-icon weui_icon_clear" v-if="isEdit" @click.stop="setEdit(false)"></i>
-        </div>
+    <header class="z-depth-1">
+        <i class="material-icons">search</i>
+        <input type="text" placeholder="Search" @keyup.enter="execSearch" v-model="searchMsg">
     </header>
 </template>
 <script>
     export default {
         data () {
             return {
-                isEdit: false,
                 searchMsg: ''
             }
         },
         methods: {
-            setEdit (param) {
-                this.isEdit = param;
-            },
             execSearch () {
                 this.searchMsg = '';
                 console.log('go.....');
