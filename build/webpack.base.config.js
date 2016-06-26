@@ -8,7 +8,8 @@ var myAlias = {
     store: Path.join(__dirname, '../src/vuex/store'),
     actions: Path.join(__dirname, '../src/vuex/actions'),
     tools: Path.join(__dirname, '../src/tools'),
-    filters: Path.join(__dirname, '../src/filters')
+    filters: Path.join(__dirname, '../src/filters'),
+    api: Path.join(__dirname, '../src/api/api.js')
 };
 
 module.exports = {

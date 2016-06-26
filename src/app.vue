@@ -15,6 +15,7 @@
     import Loading from 'components/loading';
 
     import Store from 'store';
+    import Actions from 'actions';
 
     export default {
         data () {
@@ -26,10 +27,17 @@
             'v-footer': Footer,
             Loading
         },
+        vuex: {
+            actions: {
+                setLanList: Actions.setLanList
+            }
+        },
         ready () {
-            setTimeout(() => {
-                this.isLoad = true;
-            }, 2000);
+            this.setLanList((success) => {
+                if (success) {
+                    this.isLoad = true;
+                }
+            });
         },
         store: Store
     };

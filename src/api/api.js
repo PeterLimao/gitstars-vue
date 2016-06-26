@@ -2,10 +2,10 @@
  * http api for app
  * @author PeterL
  */
-import {LoginResources} from './resources';
+import {trendingLanResources} from './resources';
 
 export default {
-    login (name, pwd) {
-        return LoginResources.save();
+    getLanguage () {
+        return trendingLanResources.get();
     }
 };

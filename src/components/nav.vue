@@ -1,7 +1,7 @@
 <style scoped>
     /*基本样式*/
-    nav {
-        width: 100%;
+    .nav {
+        overflow-y: scroll;
     }
 
     li {
@@ -14,7 +14,6 @@
     .nav-transition {
         transition: all .3s ease;
         height: 300px;
-        overflow: hidden;
     }
 
     .nav-enter, .nav-leave {
@@ -22,19 +21,10 @@
     }
 </style>
 <template>
-    <div v-show="isShowNav" transition="nav">
-        <ul>
+    <div v-show="isShowNav" class="nav" transition="nav">
+        <ul v-for="item in lanList">
             <li>
-                All
-            </li>
-            <li>
-                Java
-            </li>
-            <li>
-                Python
-            </li>
-            <li>
-                Ruby
+                {{item}}
             </li>
         </ul>
     </div>
@@ -45,6 +35,9 @@
             getters: {
                 isShowNav (state) {
                     return state.showNav;
+                },
+                lanList (state) {
+                    return state.languageList;
                 }
             }
         }
