@@ -4,5 +4,6 @@
  */
 export default {
     showNav: false,
-    languageList: []
+    languageList: [],
+    trendingList: []
 };

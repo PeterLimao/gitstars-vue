@@ -14,6 +14,10 @@
         margin: 0;
         margin-left: -2px;
     }
+
+    .weui_tabbar {
+        position: fixed;
+    }
 </style>
 <template>
     <footer>

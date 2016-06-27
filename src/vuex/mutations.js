@@ -9,5 +9,8 @@ export default {
     },
     SET_LAN_LIST (state, list) {
         state.languageList = list;
+    },
+    SET_TRENDING_LIST (state, list) {
+        state.trendingList = list;
     }
 };

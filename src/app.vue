@@ -29,13 +29,26 @@
         },
         vuex: {
             actions: {
-                setLanList: Actions.setLanList
+                setLanList: Actions.setLanList,
+                setTredingList: Actions.setTredingList
             }
         },
         ready () {
+            let index = 0;
             this.setLanList((success) => {
                 if (success) {
-                    this.isLoad = true;
+                    index++;
+                    if (index === 2) {
+                        this.isLoad = true;
+                    }
+                }
+            });
+            this.setTredingList((success) => {
+                if (success) {
+                    index++;
+                    if (index === 2) {
+                        this.isLoad = true;
+                    }
                 }
             });
         },

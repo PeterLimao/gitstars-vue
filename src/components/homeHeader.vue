@@ -3,6 +3,11 @@
     header {
         display: flex;
         color: #fff;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 10;
     }
 
     header .left, header .right{
@@ -34,7 +39,7 @@
             <tab-item :selected="true">Trending</tab-item>
             <tab-item :selected="false">Showcases</tab-item>
         </tab>
-        <div class="right item" @click="showNav">
+        <div class="right item" @click="setShowNav(true)">
             <i class="material-icons small">toc</i>
         </div>
     </header>
@@ -53,11 +58,6 @@
             },
             actions: {
                 setShowNav: Actions.setShowNav
-            }
-        },
-        methods: {
-            showNav () {
-                this.setShowNav(!this.isShowNav);
             }
         },
         components: {
