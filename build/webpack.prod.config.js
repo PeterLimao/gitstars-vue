@@ -3,7 +3,7 @@ var WebpackDevServer = require('webpack-dev-server');
 var Config = require('./webpack.base.config');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
-//Config.output.publicPath = '';
+Config.output.publicPath = 'assets/';
 
 Config.plugins = (Config.plugins || []).concat([
     new Webpack.DefinePlugin({

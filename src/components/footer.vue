@@ -17,6 +17,7 @@
 
     .weui_tabbar {
         position: fixed;
+        z-index: 10;
     }
 </style>
 <template>

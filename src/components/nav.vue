@@ -38,7 +38,7 @@
     }
 </style>
 <template>
-    <div v-show="isShowNav" class="nav" transition="nav">
+    <div v-show="isShowNav" class="nav z-depth-1" transition="nav">
         <div class="">
             <i class="material-icons small" @click="setShowNav(false)">clear</i>
         </div>
