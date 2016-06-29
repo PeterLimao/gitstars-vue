@@ -7,6 +7,9 @@
     .card-title {
         color: #673ab7;
         font-size: 20px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
 
     .card-action {

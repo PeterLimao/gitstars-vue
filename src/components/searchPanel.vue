@@ -4,7 +4,7 @@
     </section>
 </template>
 <script>
-    import SearchHeader from 'components/SearchHeader';
+    import SearchHeader from 'components/searchHeader';
 
     export default {
         components: {

@@ -6,9 +6,9 @@
     </section>
 </template>
 <script>
-    import HomeHeader from 'components/HomeHeader';
+    import HomeHeader from 'components/homeHeader';
     import Nav from 'components/nav';
-    import ListContent from 'components/ListContent';
+    import ListContent from 'components/listContent';
 
     export default {
         components: {
