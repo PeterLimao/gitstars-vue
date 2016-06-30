@@ -1,10 +1,7 @@
-<style>
-@import "~vux/dist/vux.css";
-</style>
 <template>
     <div id="app">
-        <loading v-if="!isLoad"></loading>
-        <section v-else>
+        <loading v-if="isLoad"></loading>
+        <section>
             <router-view></router-view>
             <v-footer></v-footer>
         </section>
@@ -18,36 +15,47 @@
     import Actions from 'actions';
 
     export default {
-        data () {
-            return {
-                isLoad: false
-            }
-        },
         components: {
             'v-footer': Footer,
             Loading
         },
         vuex: {
+            getters: {
+                isLoad (state) {
+                    return state.isLoad;
+                }
+            },
             actions: {
                 setLanList: Actions.setLanList,
-                setTredingList: Actions.setTredingList
+                setLoad: Actions.setLoad,
+                setTredingList: Actions.setTredingList,
+                setHotwords: Actions.setHotwords
             }
         },
         ready () {
             let index = 0;
+            let allRequest = 3;
             this.setLanList((success) => {
                 if (success) {
                     index++;
-                    if (index === 2) {
-                        this.isLoad = true;
+                    if (index === allRequest) {
+                        this.setLoad(false);
                     }
                 }
             });
             this.setTredingList((success) => {
                 if (success) {
                     index++;
-                    if (index === 2) {
-                        this.isLoad = true;
+                    if (index === allRequest) {
+                        this.setLoad(false);
+                    }
+                }
+            });
+            this.setHotwords((success) => {
+                if (success) {
+                    index++;
+                    if (index === allRequest) {
+                        this.setLoad(false);
                     }
                 }
             });

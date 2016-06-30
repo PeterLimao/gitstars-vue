@@ -4,6 +4,8 @@
  */
 import {trendingLanResources} from './resources';
 import {trendingListResources} from './resources';
+import {hotwordsResources} from './resources';
+import {searchResources} from './resources';
 
 export default {
     getLanguage () {
@@ -11,5 +13,11 @@ export default {
     },
     getTrending (type = 'all') {
         return trendingListResources.get({lang: type});
+    },
+    getHotwords () {
+        return hotwordsResources.get();
+    },
+    search (params) {
+        return searchResources.get(params);
     }
 };

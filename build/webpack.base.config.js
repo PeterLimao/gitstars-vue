@@ -1,4 +1,5 @@
 var Path = require('path');
+var ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
 
 var myAlias = {
     components: Path.join(__dirname, '../src/components'),
@@ -41,7 +42,7 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                loader: 'style!css'
+                loader: ExtractTextWebpackPlugin.extract('style-loader', 'css-loader')
             },
             {
                 test: /\.(woff|woff2|ttf|eot)$/,
@@ -56,5 +57,8 @@ module.exports = {
     babel: {
         presets: ['es2015', 'stage-0'],
         plugins: ['transform-runtime']
-    }
+    },
+    plugins: [
+        new ExtractTextWebpackPlugin('style.css')
+    ]
 };

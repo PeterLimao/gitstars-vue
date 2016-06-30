@@ -3,7 +3,11 @@
  * @author PeterL
  */
 export default {
+    isLoad: true,
+    currentLan: 'all',
     showNav: false,
+    hotwords: [],
     languageList: [],
-    trendingList: []
+    trendingList: [],
+    searchTrendingList: []
 };

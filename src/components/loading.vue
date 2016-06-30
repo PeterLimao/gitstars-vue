@@ -4,8 +4,7 @@
         position: absolute;
         width: 100%;
         height: 100%;
-        z-index: 1;
-        background: rgba(0, 0, 0, 0.5);
+        z-index: 9999;
     }
 
     .outer {
@@ -34,7 +33,7 @@
 </style>
 <template>
     <div id="loading">
-        <div class="outer">
+        <div class="outer z-depth-1">
             <div class="preloader-wrapper small active">
                 <div class="spinner-layer">
                     <div class="circle-clipper left">

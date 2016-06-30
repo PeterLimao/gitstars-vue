@@ -23,17 +23,17 @@
 <template>
     <footer>
         <tabbar>
-            <tabbar-item @click="router('/home')">
+            <tabbar-item v-touch:tap="router('/home')">
                 <span slot="icon" class="material-icons" :style="{color: homeColor}">equalizer</span>
-                <span slot="label" :style="{color: homeColor}">Home</span>
+                <span slot="label" :style="{color: homeColor}">Trending</span>
             </tabbar-item>
-            <tabbar-item @click="router('/search')">
+            <tabbar-item v-touch:tap="router('/search')">
                 <span slot="icon" class="material-icons" :style="{color: searchColor}">search</span>
                 <span slot="label" :style="{color: searchColor}">Discover</span>
             </tabbar-item>
-            <tabbar-item @click="router('/more')">
-                <span slot="icon" class="material-icons" :style="{color: moreColor}">more horiz</span>
-                <span slot="label" :style="{color: moreColor}">More</span>
+            <tabbar-item v-touch:tap="router('/more')">
+                <span slot="icon" class="material-icons" :style="{color: moreColor}">star</span>
+                <span slot="label" :style="{color: moreColor}">Star</span>
             </tabbar-item>
         </tabbar>
     </footer>

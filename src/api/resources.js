@@ -12,3 +12,5 @@ export const trendingLanResources = Vue.resource(API_ROOT + '/trending/languages
 export const trendingListResources = Vue.resource(API_ROOT + '/trending.json');
 export const showcasesResources = Vue.resource(API_ROOT + '/showcases.json');
 export const showcasesDetailResources = Vue.resource(API_ROOT + '{/showcase_name}.json');
+export const hotwordsResources = Vue.resource(API_ROOT + '/navi/repos/hotwords.json');
+export const searchResources = Vue.resource(API_ROOT + '/navi/repos/search.json');

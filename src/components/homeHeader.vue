@@ -23,7 +23,12 @@
     }
 
     header .main {
-        flex-grow: 9;
+        flex-grow: 8;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        font-weight: bold;
     }
 
     .vux-tab-item {
@@ -33,20 +38,17 @@
 <template>
     <header class="deep-purple z-depth-1">
         <div class="left item">
-            All
+            {{currentLan}}
         </div>
-        <tab class="main item" default-color="#fff" active-color="#fff">
-            <tab-item :selected="true">Trending</tab-item>
-            <tab-item :selected="false">Showcases</tab-item>
-        </tab>
-        <div class="right item" @click="setShowNav(true)">
+        <div class="main item">
+            Trending
+        </div>
+        <div class="right item" v-touch:tap="setShowNav(true)">
             <i class="material-icons small">toc</i>
         </div>
     </header>
 </template>
 <script>
-    import Tab from 'vux-components/tab';
-    import TabItem from 'vux-components/tab-item';
     import Actions from 'actions';
 
     export default {
@@ -54,15 +56,14 @@
             getters: {
                 isShowNav (state) {
                     return state.showNav;
+                },
+                currentLan (state) {
+                    return state.currentLan;
                 }
             },
             actions: {
                 setShowNav: Actions.setShowNav
             }
-        },
-        components: {
-            Tab,
-            TabItem
         }
     };
 </script>

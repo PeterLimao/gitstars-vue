@@ -4,14 +4,17 @@
  */
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import VueTouch from 'vue-touch';
 import Filter from './filter';
 import RouterMap from './router';
 import './assets/css/base';
 import 'materialize-css/dist/css/materialize.min';
+import 'vux/dist/vux.css';
 
 Vue.config.debug = process.env.NODE_ENV === 'production' ? false : true;
 
 Vue.use(VueRouter);
+Vue.use(VueTouch);
 
 Filter(Vue);
 

@@ -7,10 +7,22 @@ export default {
         let flag = isShow ? true : false;
         state.showNav = flag;
     },
+    SET_LOAD (state, isLoad) {
+        state.isLoad = isLoad;
+    },
+    SET_CURRENT_LAN (state, currentLan) {
+        state.currentLan = currentLan;
+    },
     SET_LAN_LIST (state, list) {
         state.languageList = list;
     },
     SET_TRENDING_LIST (state, list) {
         state.trendingList = list;
+    },
+    SET_SEARCH_TRENDING_LIST (state, list) {
+        state.searchTrendingList = list;
+    },
+    SET_HOTWORDS (state, hotwords) {
+        state.hotwords = hotwords;
     }
 };

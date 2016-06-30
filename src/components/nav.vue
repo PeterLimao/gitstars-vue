@@ -7,7 +7,7 @@
         right: 0;
         top: 0;
         height: 100%;
-        z-index: 9999;
+        z-index: 11;
         background: #fff;
     }
 
@@ -40,10 +40,10 @@
 <template>
     <div v-show="isShowNav" class="nav z-depth-1" transition="nav">
         <div class="">
-            <i class="material-icons small" @click="setShowNav(false)">clear</i>
+            <i class="material-icons small" v-touch:tap="setShowNav(false)">clear</i>
         </div>
         <ul>
-            <li v-for="item in lanList">
+            <li v-for="item in lanList" v-touch:tap="getType(item)">
                 {{item}}
             </li>
         </ul>
@@ -63,7 +63,22 @@
                 }
             },
             actions: {
-                setShowNav: Actions.setShowNav
+                setShowNav: Actions.setShowNav,
+                setTredingList: Actions.setTredingList,
+                setLoad: Actions.setLoad,
+                setCurrentLan: Actions.setCurrentLan
+            }
+        },
+        methods: {
+            getType (type) {
+                this.setShowNav(false);
+                this.setLoad(true);
+                this.setTredingList((success) => {
+                    if (success) {
+                        this.setCurrentLan(type);
+                        this.setLoad(false);
+                    }
+                }, type);
             }
         }
     };
