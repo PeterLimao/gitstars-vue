@@ -10,6 +10,9 @@ export default {
     SET_LOAD (state, isLoad) {
         state.isLoad = isLoad;
     },
+    SET_SEARCH (state, isSearch) {
+        state.isSearch = isSearch;
+    },
     SET_CURRENT_LAN (state, currentLan) {
         state.currentLan = currentLan;
     },

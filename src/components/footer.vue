@@ -1,46 +1,41 @@
 <style scoped>
     /*基础样式*/
-    .icono-tiles {
-        margin: 0;
-        margin-left: 10px;
-    }
-
-    .icono-search {
-        margin: 0;
-        margin-left: 2px;
-    }
-
-    .icono-comment {
-        margin: 0;
-        margin-left: -2px;
-    }
-
-    .weui_tabbar {
+    footer {
         position: fixed;
         z-index: 10;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        display: flex;
+        height: 55px;
+        background: #fff;
+    }
+
+    footer div {
+        width: 33.3%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
 </style>
 <template>
-    <footer>
-        <tabbar>
-            <tabbar-item v-touch:tap="router('/home')">
+    <footer class="z-depth-1">
+        <div v-touch:tap="router('/home')">
                 <span slot="icon" class="material-icons" :style="{color: homeColor}">equalizer</span>
                 <span slot="label" :style="{color: homeColor}">Trending</span>
-            </tabbar-item>
-            <tabbar-item v-touch:tap="router('/search')">
+        </div>
+        <div v-touch:tap="router('/search')">
                 <span slot="icon" class="material-icons" :style="{color: searchColor}">search</span>
                 <span slot="label" :style="{color: searchColor}">Discover</span>
-            </tabbar-item>
-            <tabbar-item v-touch:tap="router('/more')">
+        </div>
+        <div v-touch:tap="router('/more')">
                 <span slot="icon" class="material-icons" :style="{color: moreColor}">star</span>
                 <span slot="label" :style="{color: moreColor}">Star</span>
-            </tabbar-item>
-        </tabbar>
+        </div>
     </footer>
 </template>
 <script>
-    import Tabbar from 'vux-components/tabbar';
-    import TabbarItem from 'vux-components/tabbar-item';
 
     export default {
         data () {
@@ -74,10 +69,6 @@
                     this.moreColor = '#673ab7';
                 }
             }
-        },
-        components: {
-            Tabbar,
-            TabbarItem
         }
     };
 </script>

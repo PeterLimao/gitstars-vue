@@ -4,6 +4,7 @@
  */
 export default {
     isLoad: true,
+    isSearch: false,
     currentLan: 'all',
     showNav: false,
     hotwords: [],

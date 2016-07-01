@@ -21,7 +21,7 @@ var server = new WebpackDevServer(Webpack(Config), {
     inline: true,
     proxy: {
         '/api/*': {
-            target: 'https://gitstars.cn',
+            target: 'http://test01.gitstars.cn',
             secure: false,
             rewrite: function(req) {
                 console.log('---rewrite---' + req.url);

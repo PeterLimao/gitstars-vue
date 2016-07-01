@@ -33,31 +33,12 @@
             }
         },
         ready () {
-            let index = 0;
-            let allRequest = 3;
-            this.setLanList((success) => {
-                if (success) {
-                    index++;
-                    if (index === allRequest) {
-                        this.setLoad(false);
-                    }
-                }
-            });
-            this.setTredingList((success) => {
-                if (success) {
-                    index++;
-                    if (index === allRequest) {
-                        this.setLoad(false);
-                    }
-                }
-            });
-            this.setHotwords((success) => {
-                if (success) {
-                    index++;
-                    if (index === allRequest) {
-                        this.setLoad(false);
-                    }
-                }
+            Promise.all([
+                this.setLanList(),
+                this.setTredingList(),
+                this.setHotwords()
+            ]).then(() => {
+                this.setLoad(false);
             });
         },
         store: Store

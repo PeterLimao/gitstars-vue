@@ -6,6 +6,11 @@
         padding-left: 20px;
         padding-right: 20px;
         display: flex;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 10;
     }
 
     input {
@@ -33,16 +38,34 @@
     </header>
 </template>
 <script>
+    import Actions from 'actions';
+
     export default {
         data () {
             return {
                 searchMsg: ''
             }
         },
+        vuex: {
+            actions: {
+                setSearchTredingList: Actions.setSearchTredingList,
+                setLoad: Actions.setLoad,
+                setSearch: Actions.setSearch
+            }
+        },
         methods: {
             execSearch () {
-                this.searchMsg = '';
-                console.log('go.....');
+                this.setLoad(true);
+                this.setSearchTredingList({
+                    q: this.searchMsg,
+                    page: 1,
+                    'per_page': 25
+                }).then((success) => {
+                    if (success) {
+                        this.setLoad(false);
+                        this.setSearch(true);
+                    }
+                });
             }
         }
     };

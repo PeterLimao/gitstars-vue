@@ -11,31 +11,34 @@ export default {
     setLoad ({dispatch}, isLoad) {
         dispatch('SET_LOAD', isLoad);
     },
+    setSearch ({dispatch}, isSearch) {
+        dispatch('SET_SEARCH', isSearch);
+    },
     setCurrentLan ({dispatch}, currentLan) {
         dispatch('SET_CURRENT_LAN', currentLan);
     },
-    setLanList ({dispatch}, callback) {
-        Api.getLanguage().then((response) => {
+    setLanList ({dispatch}) {
+        return Api.getLanguage().then((response) => {
             dispatch('SET_LAN_LIST', ['all'].concat(response.data));
-            callback(true);
+            return true;
         });
     },
-    setTredingList ({dispatch}, callback, type) {
-        Api.getTrending(type).then((response) => {
+    setTredingList ({dispatch}, type) {
+        return Api.getTrending(type).then((response) => {
             dispatch('SET_TRENDING_LIST', response.data);
-            callback(true);
+            return true;
         });
     },
-    setSearchTredingList ({dispatch}, callback, params) {
-        Api.search(params).then((response) => {
+    setSearchTredingList ({dispatch}, params) {
+        return Api.search(params).then((response) => {
             dispatch('SET_SEARCH_TRENDING_LIST', response.data.items);
-            callback(true);
+            return true;
         });
     },
-    setHotwords ({dispatch}, callback) {
-        Api.getHotwords().then((response) => {
+    setHotwords ({dispatch}) {
+        return Api.getHotwords().then((response) => {
             dispatch('SET_HOTWORDS', response.data);
-            callback(true);
+            return true;
         });
     }
 };

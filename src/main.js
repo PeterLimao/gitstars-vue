@@ -9,7 +9,6 @@ import Filter from './filter';
 import RouterMap from './router';
 import './assets/css/base';
 import 'materialize-css/dist/css/materialize.min';
-import 'vux/dist/vux.css';
 
 Vue.config.debug = process.env.NODE_ENV === 'production' ? false : true;
 

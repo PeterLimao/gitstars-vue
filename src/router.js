@@ -1,3 +1,6 @@
+/**
+ * router
+ */
 export default (router) => {
     router.map({
         '*': {

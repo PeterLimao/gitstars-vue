@@ -1,7 +1,8 @@
 <style scoped>
+    /*基本样式*/
     .trending-search {
         text-align: center;
-        padding-top: 10px;
+        padding-top: 60px;
     }
 
     .trending-search span {
@@ -12,11 +13,15 @@
         color: #673ab7;
         margin-top: 10px;
     }
+
+    .list-content {
+        padding: 50px 10px;
+    }
 </style>
 <template>
-    <section id="search-panel">
+    <div id="search-panel">
         <search-header></search-header>
-        <div class="trending-search">
+        <div class="trending-search" v-if="!isSearch">
             <span>Trending Searchs</span>
             <ul>
                 <li v-for="item in hotwords" v-touch:tap="tredingSearch(item)">
@@ -24,10 +29,14 @@
                 </li>
             </ul>
         </div>
-    </section>
+        <div class="list-content" v-else>
+            <list-items :list="searchTredingList"></list-items>
+        </div>
+    </div>
 </template>
 <script>
     import SearchHeader from 'components/searchHeader';
+    import ListItems from 'components/listItems';
     import Actions from 'actions';
 
     export default {
@@ -35,27 +44,38 @@
             getters: {
                 hotwords (state) {
                     return state.hotwords;
+                },
+                searchTredingList (state) {
+                    return state.searchTrendingList;
+                },
+                isSearch (state) {
+                    return state.isSearch;
                 }
             },
             actions: {
                 setSearchTredingList: Actions.setSearchTredingList,
-                setLoad: Actions.setLoad
+                setLoad: Actions.setLoad,
+                setSearch: Actions.setSearch
             }
         },
         methods: {
             tredingSearch (keywords) {
                 this.setLoad(true);
-                this.setSearchTredingList((success) => {
-                    this.setLoad(false);
-                }, {
+                this.setSearchTredingList({
                     q: keywords,
                     page: 1,
                     'per_page': 25
+                }).then((success) => {
+                    if (success) {
+                        this.setLoad(false);
+                        this.setSearch(true);
+                    }
                 });
             }
         },
         components: {
-            SearchHeader
+            SearchHeader,
+            ListItems
         }
     };
 </script>

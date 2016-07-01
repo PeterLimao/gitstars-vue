@@ -73,12 +73,14 @@
             getType (type) {
                 this.setShowNav(false);
                 this.setLoad(true);
-                this.setTredingList((success) => {
+                this.setTredingList(type).then((success) => {
                     if (success) {
-                        this.setCurrentLan(type);
-                        this.setLoad(false);
+                        if (success) {
+                            this.setCurrentLan(type);
+                            this.setLoad(false);
+                        }
                     }
-                }, type);
+                });
             }
         }
     };

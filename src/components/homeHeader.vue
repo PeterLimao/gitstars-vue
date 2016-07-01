@@ -11,10 +11,13 @@
     }
 
     header .left, header .right{
-        flex-grow: 1;
+        width: 20%;
         text-align: center;
         line-height: 44px;
         height: 44px;
+        overflow: hidden;
+        word-wrap: normal;
+        text-overflow: ellipsis;
     }
 
     .right i {
@@ -23,7 +26,7 @@
     }
 
     header .main {
-        flex-grow: 8;
+        width: 60%;
         display: flex;
         justify-content: center;
         align-items: center;
