@@ -1,5 +1,8 @@
 // Karma configuration
 // Generated on Sat Jul 02 2016 12:19:03 GMT+0800 (CST)
+var Path = require('path');
+var WebpackConf = require('./webpack.base.config.js');
+delete WebpackConf.entry;
 
 module.exports = function(config) {
   config.set({
@@ -10,49 +13,42 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['mocha'],
+    frameworks: ['mocha', 'should'],
 
 
     // list of files / patterns to load in the browser
     files: [
-      {
-          pattern: '../node_modules/should/should.js',
-          include: true
-      },
-      '../test/demo/**/*.js',
       '../test/unit/**/*.js'
     ],
-
 
     // list of files to exclude
     exclude: [
       'karma.conf.js'
     ],
 
+    webpack: WebpackConf,
+
+    webpackServer: {
+      noInfo: true //please don't spam the console when running in karma!
+    },
+
+    webpackMiddleware: {
+      noInfo: true
+    },
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-        '../src/**/*.js': 'coverage'
+        '../test/unit/index.test.js': ['webpack']
     },
-
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress', 'mocha', 'coverage', 'html'],
+    reporters: ['progress', 'mocha'],
 
     mochaReporter: {
         output: 'autowatch'
-    },
-
-    coverageReporter: {
-        type: 'lcov',
-        dir: '../test/coverage/'
-    },
-
-    htmlReporter: {
-        outputDir: '../test/unitTestResult/'
     },
 
     // web server port
@@ -65,7 +61,7 @@ module.exports = function(config) {
 
     // level of logging
     // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-    logLevel: config.LOG_INFO,
+    logLevel: config.LOG_DEBUG,
 
 
     // enable / disable watching file and executing tests whenever any file changes
@@ -85,8 +81,8 @@ module.exports = function(config) {
             'karma-mocha',
             'karma-chrome-launcher',
             'karma-mocha-reporter',
-            'karma-coverage',
-            'karma-html-reporter'
+            'karma-should',
+            'karma-webpack'
         ]
   });
 };

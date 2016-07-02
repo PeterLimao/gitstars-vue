@@ -2,10 +2,10 @@
  * http api for app
  * @author PeterL
  */
-import {trendingLanResources} from './resources';
-import {trendingListResources} from './resources';
-import {hotwordsResources} from './resources';
-import {searchResources} from './resources';
+import { trendingLanResources } from './resources';
+import { trendingListResources } from './resources';
+import { hotwordsResources } from './resources';
+import { searchResources } from './resources';
 
 export default {
     getLanguage () {
