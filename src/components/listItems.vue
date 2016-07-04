@@ -28,18 +28,31 @@
         color: #ffeb3b;
     }
 
+    .increasing-item {
+        color: #4caf50;
+    }
+
     img {
         width: 30px;
         height: 30px;
         border-radius: 30px;
         margin-right: 10px;
     }
+
+    /*动画样式*/
+    .item-transition {
+        transition: all 0.5s ease;
+    }
+
+    .item-enter, .item-leave {
+        transform: scale(0.1, 0.1);
+    }
 </style>
 <template>
-        <div class="card" v-for="item in list">
+        <div class="card" v-for="item in list" transition="item">
             <div class="card-content">
                 <div>
-                    <img :src="item.icon" alt="" />
+                    <img v-lazy="item.icon">
                     <span class="card-title">
                         {{item.name}}
                     </span>
@@ -56,6 +69,9 @@
                 <div class="star-item">
                     <i class="material-icons">star</i>
                     <span>{{item.stars_count}}</span>
+                </div>
+                <div class="increasing-item">
+                    <span>{{item.stars_increasing}} stars today</span>
                 </div>
             </div>
         </div>

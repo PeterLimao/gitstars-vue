@@ -34,7 +34,7 @@ module.exports = {
                 exclude: /node_modules/
             },
             {
-                test: /\.(png|jpeg)$/,
+                test: /\.(png|jpeg|jpg)$/,
                 loader: 'url',
                 query: {
                     limit: 10000
@@ -51,7 +51,7 @@ module.exports = {
         ]
     },
     resolve: {
-        extensions: ['', '.js', '.vue', '.css', '.json'],
+        extensions: ['', '.js', '.vue', '.css', '.jpg'],
         alias: myAlias
     },
     babel: {
