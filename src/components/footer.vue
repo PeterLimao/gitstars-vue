@@ -48,7 +48,7 @@
         methods: {
             router (path) {
                 this.changeState(path);
-                this.$router.go({
+                this.$route.router.go({
                     path: path
                 });
             },

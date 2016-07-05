@@ -16,6 +16,9 @@ export default {
     SET_CURRENT_LAN (state, currentLan) {
         state.currentLan = currentLan;
     },
+    SET_DETAIL_VALUE (state, detailValue) {
+        state.detailValue = detailValue;
+    },
     SET_LAN_LIST (state, list) {
         state.languageList = list;
     },

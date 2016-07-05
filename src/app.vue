@@ -33,13 +33,24 @@
             }
         },
         ready () {
-            Promise.all([
-                this.setLanList(),
-                this.setTredingList(),
-                this.setHotwords()
-            ]).then(() => {
-                this.setLoad(false);
-            });
+            this.getHttp();
+            this.rewriteUrl();
+        },
+        methods: {
+            getHttp () {
+                Promise.all([
+                    this.setLanList(),
+                    this.setTredingList(),
+                    this.setHotwords()
+                ]).then(() => {
+                    this.setLoad(false);
+                });
+            },
+            rewriteUrl () {
+                if (this.$route.path === '/') {
+                    this.$route.router.replace('/home');
+                }
+            }
         },
         store: Store
     };

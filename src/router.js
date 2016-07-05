@@ -27,6 +27,11 @@ export default (router) => {
             component (resolve) {
                 require(['components/morePanel'], resolve);
             }
+        },
+        '/detail/*name': {
+            component (resolve) {
+                require(['components/readmeDetail'], resolve);
+            }
         }
     });
 };

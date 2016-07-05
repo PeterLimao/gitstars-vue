@@ -49,7 +49,7 @@
     }
 </style>
 <template>
-        <div class="card" v-for="item in list" transition="item">
+        <div class="card" v-for="item in list" transition="item" @click="goDetail(item.name, item.readme)">
             <div class="card-content">
                 <div>
                     <img v-lazy="item.icon">
@@ -77,9 +77,25 @@
         </div>
 </template>
 <script>
+    import Actions from 'actions';
+
     export default {
         props: [
             'list'
-        ]
+        ],
+        vuex: {
+            actions: {
+                setDetailValue: Actions.setDetailValue
+            }
+        },
+        methods: {
+            goDetail (name, readmeUrl) {
+                this.$route.router.go('/detail/' + name);
+                this.setDetailValue({
+                    backUrl: this.$route.path,
+                    readmeUrl: readmeUrl
+                });
+            }
+        }
     };
 </script>

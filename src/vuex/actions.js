@@ -17,6 +17,9 @@ export default {
     setCurrentLan ({dispatch}, currentLan) {
         dispatch('SET_CURRENT_LAN', currentLan);
     },
+    setDetailValue ({dispatch}, detailValue) {
+        dispatch('SET_DETAIL_VALUE', detailValue);
+    },
     setLanList ({dispatch}) {
         return Api.getLanguage().then((response) => {
             dispatch('SET_LAN_LIST', ['all'].concat(response.data));
