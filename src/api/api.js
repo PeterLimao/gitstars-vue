@@ -2,10 +2,11 @@
  * http api for app
  * @author PeterL
  */
-import { trendingLanResources } from './resources';
-import { trendingListResources } from './resources';
-import { hotwordsResources } from './resources';
-import { searchResources } from './resources';
+import {trendingLanResources} from './resources';
+import {trendingListResources} from './resources';
+import {hotwordsResources} from './resources';
+import {searchResources} from './resources';
+import {getRepoFilesResources} from './resources';
 
 export default {
     getLanguage () {
@@ -19,5 +20,8 @@ export default {
     },
     search (params) {
         return searchResources.get(params);
+    },
+    getRepoFiles (params) {
+        return getRepoFilesResources.get(params);
     }
 };

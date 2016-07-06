@@ -3,12 +3,12 @@ var Webpack = require('webpack');
 var WebpackDevServer = require('webpack-dev-server');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
-Config.entry.main.unshift("webpack-dev-server/client?http://localhost:8080/", "webpack/hot/dev-server");
+Config.entry.app.unshift("webpack-dev-server/client?http://localhost:8080/", "webpack/hot/dev-server");
 Config.plugins = (Config.plugins || []).concat([
     new Webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
-        filename: 'index.html',
-        template: 'src/index.html',
+        filename: 'app.html',
+        template: 'src/app.html',
         inject: true,
         hash: true
     })

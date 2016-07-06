@@ -4,13 +4,13 @@
  */
 import Vue from 'vue';
 import VueResource from 'vue-resource';
-import { API_ROOT } from './config';
+import {API_ROOT} from './config';
+import {GIT_API_ROOT} from './config';
 
 Vue.use(VueResource);
 
 export const trendingLanResources = Vue.resource(API_ROOT + '/trending/languages.json');
 export const trendingListResources = Vue.resource(API_ROOT + '/trending.json');
-export const showcasesResources = Vue.resource(API_ROOT + '/showcases.json');
-export const showcasesDetailResources = Vue.resource(API_ROOT + '{/showcase_name}.json');
 export const hotwordsResources = Vue.resource(API_ROOT + '/search/hotwords.json');
 export const searchResources = Vue.resource(API_ROOT + '/search.json');
+export const getRepoFilesResources = Vue.resource(GIT_API_ROOT + '/repos{/owner}{/repo}/git/trees{/branch}?recursive=1');

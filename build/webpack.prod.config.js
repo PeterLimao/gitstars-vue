@@ -12,8 +12,8 @@ Config.plugins = (Config.plugins || []).concat([
         }
     }),
     new HtmlWebpackPlugin({
-        filename: '../index.html',
-        template: 'src/index.html',
+        filename: '../app.html',
+        template: 'src/app.html',
         inject: true,
         hash: true
     }),

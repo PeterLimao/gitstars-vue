@@ -15,7 +15,7 @@ var myAlias = {
 
 module.exports = {
     entry: {
-        main: ['./src/main.js']
+        app: ['./src/app.js']
     },
     output: {
         path: Path.join(__dirname, '../dist/assets/'),

@@ -2,7 +2,7 @@
     /*基本样式*/
     .trending-search {
         text-align: center;
-        padding-top: 60px;
+        padding-top: 30px;
     }
 
     .trending-search span {
@@ -15,7 +15,7 @@
     }
 
     .list-content {
-        padding: 50px 10px;
+        padding: 20px 10px;
     }
 </style>
 <template>
