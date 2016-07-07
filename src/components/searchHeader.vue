@@ -11,27 +11,27 @@
     }
 
     .search-btn {
-        width: 40px;
-        height: 40px;
+        width: 50px;
+        height: 50px;
         background: #673ab7;
         display: flex;
         color: #fff;
         align-items: center;
         justify-content: center;
-        border-radius: 20px;
+        border-radius: 25px;
         position: fixed;
-        left: 10px;
-        top: 10px;
+        left: 5px;
+        top: 5px;
     }
 
     .input-msg {
         background: #fff;
-        height: 40px;
-        margin-top: 10px;
+        height: 50px;
+        margin-top: 5px;
         margin-left: 20px;
         margin-right: 10px;
         width: 290px;
-        border-radius: 20px;
+        border-radius: 25px;
         transition: all 0.3s ease;
         display: flex;
         align-items: center;

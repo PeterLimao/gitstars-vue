@@ -10,7 +10,7 @@
         overflow-y: scroll;
         padding-top: 50px;
         padding-bottom: 50px;
-        z-index: 9990;
+        z-index: 800;
     }
 
     #readme-detail img {
@@ -37,10 +37,16 @@
 
     .back-btn {
         position: fixed;
-        right: 10px;
-        top: 10px;
+        right: 0;
+        top: 0;
         color: #673ab7;
-        z-index: 999;
+        z-index: 9999;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        border-radius: 50%;
+        align-items: center;
+        justify-content: center;
     }
 
     .markdown-detail {
@@ -64,10 +70,11 @@
     }
 </style>
 <template>
-    <div id="readme-detail" transition="open" class="z-depth-1">
+    <div id="readme-detail" transition="open">
         <div class="back-btn" v-touch:tap="close">
-            <i class="material-icons small">clear</i>
+            <i class="material-icons">clear</i>
         </div>
+        <file-nav :owner="detailValue.owner", :repo="detailValue.repo"></file-nav>
         <div class="detail-card">
             <div class="error-msg" v-if="!detailValue.readmeUrl">
                 <i class="material-icons large">error</i>
@@ -84,6 +91,7 @@
     import Actions from 'actions';
     import {Base64} from 'js-base64';
     import Marked from 'marked';
+    import FileNav from 'components/fileNav';
 
     export default {
         data () {
@@ -107,13 +115,22 @@
                 this.$http.get(this.detailValue.readmeUrl).then((response) => {
                     this.setLoad(false);
                     this.markdownHtml = Marked(Base64.decode(response.data.content));
+                }).catch((err) => {
+                    if (err.status === 404) {
+                        this.setLoad(false);
+                        this.detailValue.readmeUrl = '';
+                    }
                 });
             }
         },
         methods: {
             close () {
                 this.$route.router.go(this.detailValue.backUrl);
+                this.setLoad(false);
             }
+        },
+        components: {
+            FileNav
         }
     };
 </script>

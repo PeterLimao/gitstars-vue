@@ -49,7 +49,7 @@
     }
 </style>
 <template>
-        <div class="card" v-for="item in list" transition="item" @click="goDetail(item.name, item.readme)">
+        <div class="card" v-for="item in list" transition="item" v-touch:tap="goDetail(item.name, item.readme)">
             <div class="card-content">
                 <div>
                     <img v-lazy="item.icon">
@@ -92,6 +92,8 @@
             goDetail (name, readmeUrl) {
                 this.$route.router.go('/detail/' + name);
                 this.setDetailValue({
+                    owner: name.split('/')[0],
+                    repo: name.split('/')[1],
                     backUrl: this.$route.path,
                     readmeUrl: readmeUrl
                 });

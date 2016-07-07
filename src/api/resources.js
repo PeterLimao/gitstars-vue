@@ -13,4 +13,4 @@ export const trendingLanResources = Vue.resource(API_ROOT + '/trending/languages
 export const trendingListResources = Vue.resource(API_ROOT + '/trending.json');
 export const hotwordsResources = Vue.resource(API_ROOT + '/search/hotwords.json');
 export const searchResources = Vue.resource(API_ROOT + '/search.json');
-export const getRepoFilesResources = Vue.resource(GIT_API_ROOT + '/repos{/owner}{/repo}/git/trees{/branch}?recursive=1');
+export const getRepoFilesResources = Vue.resource(GIT_API_ROOT + '/repos{/owner}{/repo}/contents');

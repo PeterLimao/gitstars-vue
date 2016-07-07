@@ -4,7 +4,7 @@
         position: fixed;
         width: 100%;
         height: 100%;
-        z-index: 9999;
+        z-index: 810;
     }
 
     .outer {
@@ -32,7 +32,7 @@
     }
 </style>
 <template>
-    <div id="loading">
+    <div id="loading" :style="loadingStyle">
         <div class="outer z-depth-1">
             <div class="preloader-wrapper small active">
                 <div class="spinner-layer">
@@ -50,3 +50,10 @@
         </div>
     </div>
 </template>
+<script>
+    export default {
+        props: [
+            'loadingStyle'
+        ]
+    }
+</script>
