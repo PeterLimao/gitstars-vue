@@ -52,20 +52,16 @@
     </header>
 </template>
 <script>
-    import Actions from 'actions';
+    import {setShowNav} from 'actions';
 
     export default {
         vuex: {
             getters: {
-                isShowNav (state) {
-                    return state.showNav;
-                },
-                currentLan (state) {
-                    return state.currentLan;
-                }
+                isShowNav: (state) => state.showNav,
+                currentLan: (state) => state.currentLan
             },
             actions: {
-                setShowNav: Actions.setShowNav
+                setShowNav
             }
         }
     };

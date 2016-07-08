@@ -10,9 +10,11 @@
 <script>
     import Footer from 'components/footer';
     import Loading from 'components/loading';
-
     import Store from 'store';
-    import Actions from 'actions';
+    import {setLanList} from 'actions';
+    import {setLoad} from 'actions';
+    import {setTredingList} from 'actions';
+    import {setHotwords} from 'actions';
 
     export default {
         components: {
@@ -21,15 +23,13 @@
         },
         vuex: {
             getters: {
-                isLoad (state) {
-                    return state.isLoad;
-                }
+                isLoad: (state) => state.isLoad
             },
             actions: {
-                setLanList: Actions.setLanList,
-                setLoad: Actions.setLoad,
-                setTredingList: Actions.setTredingList,
-                setHotwords: Actions.setHotwords
+                setLanList,
+                setLoad,
+                setTredingList,
+                setHotwords
             }
         },
         ready () {

@@ -52,8 +52,10 @@
 </template>
 <script>
     export default {
-        props: [
-            'loadingStyle'
-        ]
+        props: {
+            loadingStyle: {
+                type: Object
+            }
+        }
     }
 </script>

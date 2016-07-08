@@ -22,21 +22,20 @@
 <template>
     <footer class="z-depth-1">
         <div v-touch:tap="router('/home')">
-                <span slot="icon" class="material-icons" :style="{color: homeColor}">equalizer</span>
-                <span slot="label" :style="{color: homeColor}">Trending</span>
+                <span class="material-icons" :style="{color: homeColor}">equalizer</span>
+                <span :style="{color: homeColor}">Trending</span>
         </div>
         <div v-touch:tap="router('/search')">
-                <span slot="icon" class="material-icons" :style="{color: searchColor}">search</span>
-                <span slot="label" :style="{color: searchColor}">Discover</span>
+                <span class="material-icons" :style="{color: searchColor}">search</span>
+                <span :style="{color: searchColor}">Discover</span>
         </div>
         <div v-touch:tap="router('/more')">
-                <span slot="icon" class="material-icons" :style="{color: moreColor}">star</span>
-                <span slot="label" :style="{color: moreColor}">Star</span>
+                <span class="material-icons" :style="{color: moreColor}">star</span>
+                <span :style="{color: moreColor}">Star</span>
         </div>
     </footer>
 </template>
 <script>
-
     export default {
         data () {
             return {

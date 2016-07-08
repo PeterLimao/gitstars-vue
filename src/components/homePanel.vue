@@ -1,4 +1,5 @@
 <style scoped>
+    /*基本样式*/
     .list-content {
         padding: 50px 10px;
     }
@@ -20,9 +21,7 @@
     export default {
         vuex: {
             getters: {
-                trendingList (state) {
-                    return state.trendingList;
-                }
+                trendingList: (state) => state.trendingList
             }
         },
         components: {

@@ -1,6 +1,5 @@
 <style scoped>
     /*基本样式*/
-
     .card-title {
         color: #673ab7;
         font-size: 20px;
@@ -77,15 +76,12 @@
         </div>
 </template>
 <script>
-    import Actions from 'actions';
+    import {setDetailValue} from 'actions';
 
     export default {
-        props: [
-            'list'
-        ],
         vuex: {
             actions: {
-                setDetailValue: Actions.setDetailValue
+                setDetailValue
             }
         },
         methods: {
@@ -97,6 +93,12 @@
                     backUrl: this.$route.path,
                     readmeUrl: readmeUrl
                 });
+            }
+        },
+        props: {
+            list: {
+                type: Array,
+                required: true
             }
         }
     };

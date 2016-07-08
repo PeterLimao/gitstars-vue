@@ -37,25 +37,21 @@
 <script>
     import SearchHeader from 'components/searchHeader';
     import ListItems from 'components/listItems';
-    import Actions from 'actions';
+    import {setSearchTredingList} from 'actions';
+    import {setLoad} from 'actions';
+    import {setSearch} from 'actions';
 
     export default {
         vuex: {
             getters: {
-                hotwords (state) {
-                    return state.hotwords;
-                },
-                searchTredingList (state) {
-                    return state.searchTrendingList;
-                },
-                isSearch (state) {
-                    return state.isSearch;
-                }
+                hotwords: (state) => state.hotwords,
+                searchTredingList: (state) => state.searchTrendingList,
+                isSearch: (state) => state.isSearch
             },
             actions: {
-                setSearchTredingList: Actions.setSearchTredingList,
-                setLoad: Actions.setLoad,
-                setSearch: Actions.setSearch
+                setSearchTredingList,
+                setLoad,
+                setSearch
             }
         },
         methods: {

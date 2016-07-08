@@ -70,11 +70,11 @@
     }
 </style>
 <template>
-    <div id="readme-detail" transition="open">
+    <div id="readme-detail" transition="open" :style="readmeDetailStyle">
         <div class="back-btn" v-touch:tap="close">
             <i class="material-icons">clear</i>
         </div>
-        <file-nav :owner="detailValue.owner", :repo="detailValue.repo"></file-nav>
+        <file-nav :owner="detailValue.owner" :repo="detailValue.repo"></file-nav>
         <div class="detail-card">
             <div class="error-msg" v-if="!detailValue.readmeUrl">
                 <i class="material-icons large">error</i>
@@ -88,7 +88,7 @@
     </div>
 </template>
 <script>
-    import Actions from 'actions';
+    import {setLoad} from 'actions';
     import {Base64} from 'js-base64';
     import Marked from 'marked';
     import FileNav from 'components/fileNav';
@@ -96,17 +96,16 @@
     export default {
         data () {
             return {
-                markdownHtml: ''
+                markdownHtml: '',
+                readmeDetailStyle: {}
             }
         },
         vuex: {
             getters: {
-                detailValue (state) {
-                    return state.detailValue;
-                }
+                detailValue: (state) => state.detailValue
             },
             actions: {
-                setLoad: Actions.setLoad
+                setLoad
             }
         },
         ready () {
@@ -127,6 +126,15 @@
             close () {
                 this.$route.router.go(this.detailValue.backUrl);
                 this.setLoad(false);
+            }
+        },
+        events: {
+            isHiddenScroll (isHidden) {
+                if (isHidden) {
+                    this.readmeDetailStyle = {'overflow-y': 'hidden', 'height': '100%'};
+                } else {
+                    this.readmeDetailStyle = {};
+                }
             }
         },
         components: {

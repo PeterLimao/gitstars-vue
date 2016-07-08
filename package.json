@@ -4,7 +4,8 @@
   "description": "gitstars webapp",
   "scripts": {
     "build": "webpack --progress --hide-modules --config build/webpack.prod.config.js",
-    "dev": "node build/webpack.dev.config.js"
+    "dev": "node build/webpack.dev.config.js",
+    "test": "karma start build/karma.conf.js"
   },
   "keywords": [
     "gitstars"

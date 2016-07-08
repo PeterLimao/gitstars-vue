@@ -50,23 +50,22 @@
     </div>
 </template>
 <script>
-    import Actions from 'actions';
+    import {setShowNav} from 'actions';
+    import {setTredingList} from 'actions';
+    import {setLoad} from 'actions';
+    import {setCurrentLan} from 'actions';
 
     export default {
         vuex: {
             getters: {
-                isShowNav (state) {
-                    return state.showNav;
-                },
-                lanList (state) {
-                    return state.languageList;
-                }
+                isShowNav: (state) => state.showNav,
+                lanList: (state) => state.languageList
             },
             actions: {
-                setShowNav: Actions.setShowNav,
-                setTredingList: Actions.setTredingList,
-                setLoad: Actions.setLoad,
-                setCurrentLan: Actions.setCurrentLan
+                setShowNav,
+                setTredingList,
+                setLoad,
+                setCurrentLan
             }
         },
         methods: {

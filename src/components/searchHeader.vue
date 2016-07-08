@@ -62,7 +62,9 @@
     </header>
 </template>
 <script>
-    import Actions from 'actions';
+    import {setSearchTredingList} from 'actions';
+    import {setLoad} from 'actions';
+    import {setSearch} from 'actions';
 
     export default {
         data () {
@@ -80,9 +82,9 @@
         },
         vuex: {
             actions: {
-                setSearchTredingList: Actions.setSearchTredingList,
-                setLoad: Actions.setLoad,
-                setSearch: Actions.setSearch
+                setSearchTredingList,
+                setLoad,
+                setSearch
             }
         },
         methods: {
