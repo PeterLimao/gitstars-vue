@@ -165,7 +165,10 @@
                 this.$http.get(path).then((response) => {
                     this.isLoad = false;
                     this.filePath = name;
-                    this.fileContent = response.data.toString();
+                    if (typeof response.data === 'object') {
+                        response.data = JSON.stringify(response.data);
+                    }
+                    this.fileContent = response.data;
                     this.isShowDetailFile = true;
                 });
             }
