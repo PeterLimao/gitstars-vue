@@ -36,12 +36,32 @@
         overflow-y: scroll;
         height: 100%;
         -webkit-overflow-scrolling : touch;
+        padding-top: 50px;
     }
 
     .file-panel-content h3 {
         color: #673ab7;
-        text-align: center;
         margin: 10px 10px;
+    }
+
+    .file-panel-title {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        display: flex;
+        height: 50px;
+        color: #673ab7;
+        align-items: center;
+        justify-content: center;
+        background: #f9f9f9;
+    }
+
+    .file-panel-title > i {
+        position: absolute;
+        left: 10px;
+        top: 10px;
+        font-size: 30px;
     }
 
     .file-panel-file {
@@ -72,7 +92,10 @@
         <div class="file-panel z-depth-2" :style="panelStyle">
             <loading :loading-style="{position: 'absolute'}" v-if="isLoad"></loading>
             <div class="file-panel-content" v-if="isShowFileNav">
-                <h3>{{filePath}}</h3>
+                <div class="file-panel-title">
+                    <i class="material-icons" v-if="urlIndex" v-touch:tap="goBack">keyboard_backspace</i>
+                    <span>{{filePath}}</span>
+                </div>
                 <div class="file-panel-list" v-if="!isShowDetailFile">
                     <div class="file-item" v-for="item in fileTree" v-touch:tap="openDetailNav(item)">
                         <i class="material-icons" v-show="isFolder(item.type)">folder_open</i>
@@ -98,8 +121,13 @@
                 isLoad: false,
                 isShowDetailFile: false,
                 isShowFileNav: false,
+                isGoBack: false,
+                urlIndex: 0,
                 filePath: 'root',
                 fileContent: '',
+                backUrl: '',
+                backName: '',
+                backfilePath: '',
                 panelStyle: {},
                 iconStyle: {}
             }
@@ -131,8 +159,17 @@
                     background: iconBg
                 };
             },
+            goBack () {
+                this.isGoBack = true;
+                if (this.urlIndex === 1) {
+                    this.getFileNav();
+                } else {
+                    this.getSubFileNav(this.backName, this.backUrl);
+                }
+                this.urlIndex--;
+            },
             getFileNav() {
-                if (this.isShowFileNav) {
+                if (this.isShowFileNav && !this.isGoBack) {
                     return;
                 }
                 this.isLoad = true;
@@ -142,22 +179,35 @@
                 }).then((response) => {
                     this.isLoad = false;
                     this.fileTree = response.data;
+                    this.filePath = 'root';
+                    this.isShowDetailFile = false;
                 });
             },
             openDetailNav (item) {
+                this.isGoBack = false;
                 if (item.type === 'file') {
                     this.getDetailFile(item.name, item.download_url);
                 } else {
                     this.getSubFileNav(item.name, item.url);
+                    this.backfilePath = this.filePath;
+                    if (this.urlIndex % 2 === 0) {
+                        this.backUrl = item.url;
+                        this.backName = item.name;
+                    }
                 }
+                this.urlIndex++;
             },
             getSubFileNav (name, path) {
                 this.isLoad = true;
                 this.$http.get(path).then((response) => {
                     this.isLoad = false;
                     this.fileTree = response.data;
-                    this.filePath += '/' + name;
                     this.isShowDetailFile = false;
+                    if (this.isGoBack === false) {
+                        this.filePath += '/' + name;
+                    } else {
+                        this.filePath = this.backfilePath;
+                    }
                 });
             },
             getDetailFile (name, path) {
