@@ -36,7 +36,6 @@
         overflow-y: scroll;
         height: 100%;
         -webkit-overflow-scrolling : touch;
-        padding-top: 50px;
     }
 
     .file-panel-content h3 {
@@ -44,10 +43,21 @@
         margin: 10px 10px;
     }
 
-    .file-panel-title {
+    .file-panel-back-div {
         position: absolute;
-        left: 0;
-        top: 0;
+        left: 10px;
+        top: 5px;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #f9f9f9;
+        z-index: 10;
+    }
+
+    .file-panel-title {
         width: 100%;
         display: flex;
         height: 50px;
@@ -55,19 +65,7 @@
         align-items: center;
         justify-content: center;
         background: #f9f9f9;
-    }
-
-    .file-panel-title > i {
-        position: absolute;
-        left: 10px;
-        top: 10px;
-        font-size: 30px;
-    }
-
-    .file-panel-file {
-        border-top: 1px solid rgba(160, 160, 160, 0.2);
-        overflow-x: scroll;
-        padding: 10px;
+        z-index: 10;
     }
 
     .file-item {
@@ -93,7 +91,9 @@
             <loading :loading-style="{position: 'absolute'}" v-if="isLoad"></loading>
             <div class="file-panel-content" v-if="isShowFileNav">
                 <div class="file-panel-title">
-                    <i class="material-icons" v-if="urlIndex" v-touch:tap="goBack">keyboard_backspace</i>
+                    <div class="file-panel-back-div z-depth-1" v-if="urlIndex" v-touch:tap="goBack">
+                        <i class="material-icons">keyboard_backspace</i>
+                    </div>
                     <span>{{filePath}}</span>
                 </div>
                 <div class="file-panel-list" v-if="!isShowDetailFile">
@@ -103,9 +103,7 @@
                         <span>{{item.name}}</span>
                     </div>
                 </div>
-                <div class="file-panel-file" v-else>
-                    <pre>{{fileContent}}</pre>
-                </div>
+                <file-panel-file :file-content="fileContent" v-else></file-panel-file>
             </div>
         </div>
     </div>
@@ -113,6 +111,7 @@
 <script>
     import Loading from 'components/loading';
     import Api from 'api';
+    import FilePanelFile from 'components/filePanelFile';
 
     export default {
         data () {
@@ -164,14 +163,15 @@
                 if (this.urlIndex === 1) {
                     this.getFileNav();
                 } else {
+                    this.urlIndex--;
                     this.getSubFileNav(this.backName, this.backUrl);
                 }
-                this.urlIndex--;
             },
             getFileNav() {
                 if (this.isShowFileNav && !this.isGoBack) {
                     return;
                 }
+                this.urlIndex = 0;
                 this.isLoad = true;
                 Api.getRepoFiles({
                     owner: this.owner,
@@ -185,11 +185,11 @@
             },
             openDetailNav (item) {
                 this.isGoBack = false;
+                this.backfilePath = this.filePath;
                 if (item.type === 'file') {
                     this.getDetailFile(item.name, item.download_url);
                 } else {
                     this.getSubFileNav(item.name, item.url);
-                    this.backfilePath = this.filePath;
                     if (this.urlIndex % 2 === 0) {
                         this.backUrl = item.url;
                         this.backName = item.name;
@@ -234,7 +234,8 @@
             }
         },
         components: {
-            Loading
+            Loading,
+            FilePanelFile
         }
     }
 </script>

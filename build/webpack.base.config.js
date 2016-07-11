@@ -15,7 +15,8 @@ var myAlias = {
 
 module.exports = {
     entry: {
-        app: ['./src/app.js']
+        app: ['./src/app.js'],
+        fileContent: ['./src/apiPages/fileContent/fileContent.js']
     },
     output: {
         path: Path.join(__dirname, '../dist/assets/'),
@@ -59,6 +60,6 @@ module.exports = {
         plugins: ['transform-runtime']
     },
     plugins: [
-        new ExtractTextWebpackPlugin('style.css')
+        new ExtractTextWebpackPlugin('[name].css')
     ]
 };

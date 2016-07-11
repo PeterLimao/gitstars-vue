@@ -14,6 +14,14 @@ Config.plugins = (Config.plugins || []).concat([
     new HtmlWebpackPlugin({
         filename: '../app.html',
         template: 'src/app.html',
+        chunks: ['app'],
+        inject: true,
+        hash: true
+    }),
+    new HtmlWebpackPlugin({
+        filename: '../fileContent.html',
+        template: 'src/apiPages/fileContent/fileContent.html',
+        chunks: ['fileContent'],
         inject: true,
         hash: true
     }),

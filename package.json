@@ -13,6 +13,7 @@
   "author": "PeterL",
   "license": "MIT",
   "dependencies": {
+    "highlightjs": "8.7.0",
     "js-base64": "2.1.9",
     "marked": "0.3.5",
     "materialize-css": "0.97.6",

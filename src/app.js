@@ -9,9 +9,8 @@ import VueAnimatedList from 'vue-animated-list';
 import VueLazyload from 'vue-lazyload';
 import Filter from './filter';
 import RouterMap from './router';
-import './assets/css/base';
-
 import loadingImg from './assets/img/9.pic.jpg';
+import './assets/css/base';
 
 Vue.config.debug = process.env.NODE_ENV === 'production' ? false : true;
 
