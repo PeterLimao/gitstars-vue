@@ -3,8 +3,11 @@
     /*基本样式*/
     .file-panel-file {
         border-top: 1px solid rgba(160, 160, 160, 0.2);
-        overflow-x: scroll;
+        overflow: scroll;
+        -webkit-overflow-scrolling : touch;
         padding: 10px;
+        height: 100%;
+        width: 100%;
     }
 </style>
 <template>
