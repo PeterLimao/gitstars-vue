@@ -4,34 +4,22 @@
 export default (router) => {
     router.map({
         '*': {
-            component (resolve) {
-                require(['components/homePanel'], resolve);
-            }
+            component: require('components/homePanel')
         },
         '/': {
-            component (resolve) {
-                require(['components/homePanel'], resolve);
-            }
+            component: require('components/homePanel')
         },
         '/home': {
-            component (resolve) {
-                require(['components/homePanel'], resolve);
-            }
+            component: require('components/homePanel')
         },
         '/search': {
-            component (resolve) {
-                require(['components/searchPanel'], resolve);
-            }
+            component: require('components/searchPanel')
         },
         '/more': {
-            component (resolve) {
-                require(['components/morePanel'], resolve);
-            }
+            component: require('components/morePanel')
         },
         '/detail/*name': {
-            component (resolve) {
-                require(['components/readmeDetail'], resolve);
-            }
+            component: require('components/readmeDetail')
         }
     });
 };

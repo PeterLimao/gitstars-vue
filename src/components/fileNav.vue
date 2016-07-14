@@ -142,7 +142,7 @@
 </template>
 <script>
     import Loading from 'components/loading';
-    import Api from 'api';
+    import {getRepoFiles} from 'api';
     import FilePanelFile from 'components/filePanelFile';
 
     export default {
@@ -203,7 +203,7 @@
             },
             getFileNav() {
                 this.isLoad = true;
-                Api.getRepoFiles({
+                getRepoFiles({
                     owner: this.owner,
                     repo: this.repo
                 }).then((response) => {

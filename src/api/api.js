@@ -7,21 +7,16 @@ import {trendingListResources} from './resources';
 import {hotwordsResources} from './resources';
 import {searchResources} from './resources';
 import {getRepoFilesResources} from './resources';
+import {getConfigResources} from './resources';
 
-export default {
-    getLanguage () {
-        return trendingLanResources.get();
-    },
-    getTrending (type = 'all') {
-        return trendingListResources.get({lang: type});
-    },
-    getHotwords () {
-        return hotwordsResources.get();
-    },
-    search (params) {
-        return searchResources.get(params);
-    },
-    getRepoFiles (params) {
-        return getRepoFilesResources.get(params);
-    }
-};
+export const getLanguage = () => trendingLanResources.get()
+
+export const getTrending = (type = 'all') => trendingListResources.get({lang: type})
+
+export const getHotwords = () => hotwordsResources.get()
+
+export const search = (params) => searchResources.get(params)
+
+export const getRepoFiles = (params) => getRepoFilesResources.get(params)
+
+export const getConfig = () => getConfigResources.get()

@@ -1,5 +1,6 @@
 <template>
     <div id="app">
+        <welcome-loading></welcome-loading>
         <loading v-if="isLoad"></loading>
         <section>
             <router-view></router-view>
@@ -10,6 +11,7 @@
 <script>
     import Footer from 'components/footer';
     import Loading from 'components/loading';
+    import WelcomeLoading from 'components/welcomeLoading';
     import Store from 'store';
     import {setLanList} from 'actions';
     import {setLoad} from 'actions';
@@ -17,9 +19,16 @@
     import {setHotwords} from 'actions';
 
     export default {
+        data () {
+            return {
+                welcomeContent: '',
+                isWelcomeShow: false
+            }
+        },
         components: {
             'v-footer': Footer,
-            Loading
+            Loading,
+            WelcomeLoading
         },
         vuex: {
             getters: {
@@ -32,7 +41,7 @@
                 setHotwords
             }
         },
-        ready () {
+        created () {
             this.getHttp();
             this.rewriteUrl();
         },
@@ -42,7 +51,7 @@
                     this.setLanList(),
                     this.setTredingList(),
                     this.setHotwords()
-                ]).then(() => {
+                ]).then((responseList) => {
                     this.setLoad(false);
                 });
             },

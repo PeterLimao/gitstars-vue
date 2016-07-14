@@ -2,7 +2,10 @@
  * actions for vuex
  * @author PeterL
  */
-import Api from 'api';
+import {getLanguage} from 'api';
+import {getTrending} from 'api';
+import {search} from 'api';
+import {getHotwords} from 'api';
 
 export const setShowNav = ({dispatch}, isShow) => {
     dispatch('SET_SHOW_NAV', isShow);
@@ -25,28 +28,28 @@ export const setDetailValue = ({dispatch}, detailValue) => {
 };
 
 export const setLanList = ({dispatch}) => {
-    return Api.getLanguage().then((response) => {
+    return getLanguage().then((response) => {
         dispatch('SET_LAN_LIST', ['all'].concat(response.data));
         return true;
     });
 };
 
 export const setTredingList = ({dispatch}, type) => {
-    return Api.getTrending(type).then((response) => {
+    return getTrending(type).then((response) => {
         dispatch('SET_TRENDING_LIST', response.data);
         return true;
     });
 };
 
 export const setSearchTredingList = ({dispatch}, params) => {
-    return Api.search(params).then((response) => {
+    return search(params).then((response) => {
         dispatch('SET_SEARCH_TRENDING_LIST', response.data.items);
         return true;
     });
 };
 
 export const setHotwords = ({dispatch}) => {
-    return Api.getHotwords().then((response) => {
+    return getHotwords().then((response) => {
         dispatch('SET_HOTWORDS', response.data);
         return true;
     });
