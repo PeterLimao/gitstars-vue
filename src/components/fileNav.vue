@@ -129,7 +129,8 @@
                     <span>{{filePath}}</span>
                 </div>
                 <file-panel-file :file-content="fileContent" v-if="isShowDetailFile"></file-panel-file>
-                <div class="file-panel-list" v-else>
+                <file-panel-pic :pic-src="fileSrc" v-if="isShowDetailPic"></file-panel-pic>
+                <div class="file-panel-list" v-if="!isShowDetailFile && !isShowDetailPic">
                     <div class="file-item" v-for="item in fileTree" v-touch:tap="openDetailNav(item)">
                         <i class="material-icons" v-show="isFolder(item.type)">folder_open</i>
                         <i class="material-icons" v-show="!isFolder(item.type)">content_copy</i>
@@ -144,6 +145,7 @@
     import Loading from 'components/loading';
     import {getRepoFiles} from 'api';
     import FilePanelFile from 'components/filePanelFile';
+    import FilePanelPic from 'components/filePanelPic';
 
     export default {
         data () {
@@ -152,10 +154,12 @@
                 isLoad: false,
                 isShowFileNav: false,
                 isShowDetailFile: false,
+                isShowDetailPic: false,
                 isFirstBack: true,
                 fileDeep: [],
                 filePath: 'root',
                 fileContent: '',
+                fileSrc: '',
                 panelStyle: {},
                 iconStyle: {}
             }
@@ -181,7 +185,9 @@
                 this.filePath = 'root';
                 this.fileTree = '';
                 this.fileContent = '';
+                this.fileSrc = '';
                 this.isShowDetailFile = false;
+                this.isShowDetailPic = false;
                 this.fileTree = '';
                 this.fileDeep = [];
                 this.isLoad = false;
@@ -252,10 +258,24 @@
                     this.fileTree = response.data;
                     this.filePath += '/' + name;
                     this.isShowDetailFile = false;
+                    this.isShowDetailPic = false;
                     if (callback) callback();
                 });
             },
             getDetailFile (name, path, callback) {
+                let showPicRegExp = /\.(png|jpeg|jpg|gif)/g;
+                let downLoadRegExp = /\.(pdf)/g;
+
+                if (showPicRegExp.test(name)) {
+                    this.showPic(name, path, callback);
+                } else if (downLoadRegExp.test(name)) {
+                    //不执行callback, 从而不向数组push obj
+                    this.downloadFile(name, path);
+                } else {
+                    this.showCode(name, path, callback);
+                }
+            },
+            showCode (name, path, callback) {
                 this.isLoad = true;
                 this.$http.get(path).then((response) => {
                     this.isLoad = false;
@@ -265,8 +285,24 @@
                     }
                     this.fileContent = response.data;
                     this.isShowDetailFile = true;
+                    this.isShowDetailPic = false;
                     if (callback) callback();
                 });
+            },
+            downloadFile (name, path) {
+                let link = document.createElement('a');
+                let event = document.createEvent('HTMLEvents');
+                event.initEvent('click', false, false);
+                link.download = name;
+                link.href = path;
+                link.dispatchEvent(event);
+            },
+            showPic (name, path, callback) {
+                this.isShowDetailPic = true;
+                this.isShowDetailFile = false;
+                this.fileSrc = path;
+                this.filePath = name;
+                if (callback) callback();
             }
         },
         props: {
@@ -281,7 +317,8 @@
         },
         components: {
             Loading,
-            FilePanelFile
+            FilePanelFile,
+            FilePanelPic
         }
     }
 </script>
