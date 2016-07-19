@@ -1,6 +1,10 @@
 /**
- * router
+ * filter.js
+ * @author PeterL
  */
+import State from 'state';
+
+
 export default (router) => {
     router.map({
         '*': {
@@ -32,6 +36,19 @@ export default (router) => {
             component (resolve) {
                 require(['components/readmeDetail'], resolve);
             }
+        }
+    });
+
+    router.beforeEach(({to, next}) => {
+        if (/(detail)/g.test(to.path)) {
+            State.isLoad = true;
+        }
+        next();
+    });
+
+    router.afterEach(({to}) => {
+        if (/(detail)/g.test(to.path)) {
+            State.isLoad = false;
         }
     });
 };

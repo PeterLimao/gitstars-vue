@@ -35,7 +35,7 @@
         align-items: center;
         justify-content: center;
         bottom: 10px;
-        right: 15%;
+        right: 16%;
         z-index: 9999;
     }
 
@@ -112,6 +112,15 @@
         opacity: 0;
         transform: translateX(100%);
     }
+
+    /*动态样式*/
+    .list-transition {
+        transition: all 0.3s ease;
+    }
+
+    .list-enter, .list-leave {
+        transform: translateX(-100%);
+    }
 </style>
 <template>
     <div id="file-nav">
@@ -119,7 +128,7 @@
             <i class="material-icons" v-if="isShowFileNav">clear</i>
             <i class="material-icons" v-else>list</i>
         </div>
-        <div class="back-icon z-depth-1" v-touch:tap="goBack()" v-if="!isNotRoot" transition="back">
+        <div class="back-icon z-depth-1" v-touch:tap="goBack()" v-if="fileIndex > 1" transition="back">
             <i class="material-icons">keyboard_backspace</i>
         </div>
         <div class="file-panel z-depth-1" :style="panelStyle">
@@ -128,10 +137,10 @@
                 <div class="file-panel-title">
                     <span>{{filePath}}</span>
                 </div>
-                <file-panel-file :file-content="fileContent" v-if="isShowDetailFile"></file-panel-file>
-                <file-panel-pic :pic-src="fileSrc" v-if="isShowDetailPic"></file-panel-pic>
+                <file-panel-file :file-content="fileContent" v-if="isShowDetailFile" transition="list"></file-panel-file>
+                <file-panel-pic :pic-src="fileSrc" v-if="isShowDetailPic" transition="list"></file-panel-pic>
                 <div class="file-panel-list" v-if="!isShowDetailFile && !isShowDetailPic">
-                    <div class="file-item" v-for="item in fileTree" v-touch:tap="openDetailNav(item)">
+                    <div class="file-item" v-for="item in fileList" v-touch:tap="openDetailNav(item)" transition="list">
                         <i class="material-icons" v-show="isFolder(item.type)">folder_open</i>
                         <i class="material-icons" v-show="!isFolder(item.type)">content_copy</i>
                         <span>{{item.name}}</span>
@@ -150,23 +159,18 @@
     export default {
         data () {
             return {
-                fileTree: '',
+                fileTree: {},
+                fileList: [],
+                fileIndex: 0,
                 isLoad: false,
                 isShowFileNav: false,
                 isShowDetailFile: false,
                 isShowDetailPic: false,
-                isFirstBack: true,
-                fileDeep: [],
-                filePath: 'root',
+                filePath: '',
                 fileContent: '',
                 fileSrc: '',
                 panelStyle: {},
                 iconStyle: {}
-            }
-        },
-        computed: {
-            isNotRoot () {
-                return this.filePath === 'root';
             }
         },
         methods: {
@@ -182,16 +186,15 @@
                 }
             },
             initData () {
-                this.filePath = 'root';
-                this.fileTree = '';
+                this.filePath = '';
+                this.fileTree = {};
+                this.fileList = [];
+                this.fileIndex = 0;
                 this.fileContent = '';
                 this.fileSrc = '';
                 this.isShowDetailFile = false;
                 this.isShowDetailPic = false;
-                this.fileTree = '';
-                this.fileDeep = [];
                 this.isLoad = false;
-                this.isFirstBack = true;
             },
             setPanelStyle () {
                 let panelHeight = this.isShowFileNav ? (window.innerHeight - 70) + 'px' : 0;
@@ -207,6 +210,20 @@
                     background: iconBg
                 };
             },
+            goBack () {
+                this.fileIndex--;
+                this.fileList = this.fileTree[this.fileIndex].data;
+                this.filePath = this.fileTree[this.fileIndex].path;
+                this.isShowDetailFile = false;
+                this.isShowDetailPic = false;
+            },
+            setFileTree (path, data) {
+                this.fileIndex++;
+                this.$set('fileTree[' + this.fileIndex + '].path', path);
+                this.$set('fileTree[' + this.fileIndex + '].data', data);
+                this.fileList = this.fileTree[this.fileIndex].data;
+                this.filePath = this.fileTree[this.fileIndex].path;
+            },
             getFileNav() {
                 this.isLoad = true;
                 getRepoFiles({
@@ -214,79 +231,49 @@
                     repo: this.repo
                 }).then((response) => {
                     this.isLoad = false;
-                    this.fileTree = response.data;
+                    this.setFileTree('root', response.data);
                 });
-            },
-            goBack () {
-                if (this.isFirstBack) {
-                    this.fileDeep.pop();
-                    this.isFirstBack = false;
-                }
-                if (this.fileDeep.length === 0) {
-                    this.initData();
-                    this.getFileNav();
-                } else {
-                    let itemObj = this.fileDeep.pop();
-                    this.getSubFileNav(itemObj.backName, itemObj.backUrl, () => {
-                        this.filePath = itemObj.backFilePath;
-                    });
-                }
             },
             openDetailNav (item) {
                 if (item.type === 'file') {
-                    this.getDetailFile(item.name, item.download_url, () => {
-                        this.fileDeep.push({
-                            backUrl: item.download_url,
-                            backName: item.name,
-                            backFilePath: this.filePath
-                        });
-                    });
+                    this.getDetailFile(item.name, item.download_url);
                 } else {
-                    this.getSubFileNav(item.name, item.url, () => {
-                        this.fileDeep.push({
-                            backUrl: item.url,
-                            backName: item.name,
-                            backFilePath: this.filePath
-                        });
-                    });
+                    this.getSubFileNav(item.name, item.url);
                 }
             },
-            getSubFileNav (name, path, callback) {
+            getSubFileNav (name, path) {
                 this.isLoad = true;
                 this.$http.get(path).then((response) => {
                     this.isLoad = false;
-                    this.fileTree = response.data;
-                    this.filePath += '/' + name;
                     this.isShowDetailFile = false;
                     this.isShowDetailPic = false;
-                    if (callback) callback();
+                    this.setFileTree(this.filePath += '/' + name, response.data);
                 });
             },
-            getDetailFile (name, path, callback) {
+            getDetailFile (name, path) {
                 let showPicRegExp = /\.(png|jpeg|jpg|gif)/g;
-                let downLoadRegExp = /\.(pdf)/g;
+                let downLoadRegExp = /\.(pdf|m4a)/g;
 
                 if (showPicRegExp.test(name)) {
-                    this.showPic(name, path, callback);
+                    this.showPic(name, path);
                 } else if (downLoadRegExp.test(name)) {
-                    //不执行callback, 从而不向数组push obj
                     this.downloadFile(name, path);
                 } else {
-                    this.showCode(name, path, callback);
+                    this.showCode(name, path);
                 }
             },
             showCode (name, path, callback) {
                 this.isLoad = true;
                 this.$http.get(path).then((response) => {
-                    this.isLoad = false;
-                    this.filePath = name;
+                    this.fileIndex++;
                     if (typeof response.data === 'object') {
                         response.data = JSON.stringify(response.data);
                     }
+                    this.isLoad = false;
+                    this.filePath = name;
                     this.fileContent = response.data;
                     this.isShowDetailFile = true;
                     this.isShowDetailPic = false;
-                    if (callback) callback();
                 });
             },
             downloadFile (name, path) {
@@ -298,11 +285,11 @@
                 link.dispatchEvent(event);
             },
             showPic (name, path, callback) {
+                this.fileIndex++;
                 this.isShowDetailPic = true;
                 this.isShowDetailFile = false;
                 this.fileSrc = path;
                 this.filePath = name;
-                if (callback) callback();
             }
         },
         props: {
