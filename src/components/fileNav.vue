@@ -13,7 +13,6 @@
         width: 40px;
         height: 40px;
         border-radius: 50%;
-        color: #fff;
         background: #673ab7;
         display: flex;
         align-items: center;
@@ -22,6 +21,7 @@
         right: 2.5%;
         transition: all 0.3s ease;
         z-index: 9999;
+        padding: 10px 5px 6px;
     }
 
     .back-icon {
@@ -125,8 +125,7 @@
 <template>
     <div id="file-nav">
         <div class="file-icon z-depth-1" :style="iconStyle" v-touch:tap="showFileNav">
-            <i class="material-icons" v-if="isShowFileNav">clear</i>
-            <i class="material-icons" v-else>list</i>
+            <icon-transition :color="iconTransitionColor" :type="iconTransitionType"></icon-transition>
         </div>
         <div class="back-icon z-depth-1" v-touch:tap="goBack()" v-if="fileIndex > 1" transition="back">
             <i class="material-icons">keyboard_backspace</i>
@@ -155,6 +154,7 @@
     import {getRepoFiles} from 'api';
     import FilePanelFile from 'components/filePanelFile';
     import FilePanelPic from 'components/filePanelPic';
+    import IconTransition from 'components/iconTransition';
 
     export default {
         data () {
@@ -170,7 +170,9 @@
                 fileContent: '',
                 fileSrc: '',
                 panelStyle: {},
-                iconStyle: {}
+                iconStyle: {},
+                iconTransitionColor: '#fff',
+                iconTransitionType: 'menu'
             }
         },
         methods: {
@@ -203,10 +205,10 @@
                 };
             },
             setIconStyle () {
-                let iconColor = this.isShowFileNav ? '#673ab7' : '#fff';
+                this.iconTransitionColor = this.isShowFileNav ? '#673ab7' : '#fff';
+                this.iconTransitionType = this.isShowFileNav ? 'cancle' : 'menu';
                 let iconBg = this.isShowFileNav ? '#fff' : '#673ab7';
                 this.iconStyle = {
-                    color: iconColor,
                     background: iconBg
                 };
             },
@@ -305,7 +307,8 @@
         components: {
             Loading,
             FilePanelFile,
-            FilePanelPic
+            FilePanelPic,
+            IconTransition
         }
     }
 </script>
