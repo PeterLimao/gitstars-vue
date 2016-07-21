@@ -48,29 +48,31 @@
     }
 </style>
 <template>
-        <div class="card" v-for="item in list" transition="item" v-touch:tap="goDetail(item.name, item.readme)">
-            <div class="card-content">
-                <div>
-                    <img v-lazy="item.icon">
-                    <span class="card-title">
-                        {{item.name}}
-                    </span>
+        <div id="list-items">
+            <div class="card" v-for="item in list" transition="item" v-touch:tap="goDetail(item.name, item.readme)">
+                <div class="card-content">
+                    <div>
+                        <img v-lazy="item.icon">
+                        <span class="card-title">
+                            {{item.name}}
+                        </span>
+                    </div>
+                    <p>
+                        {{item.desc}}
+                    </p>
                 </div>
-                <p>
-                    {{item.desc}}
-                </p>
-            </div>
-            <div class="card-action">
-                <div class="code-item">
-                    <i class="material-icons">code</i>
-                    <span>{{item.language}}</span>
-                </div>
-                <div class="star-item">
-                    <i class="material-icons">star</i>
-                    <span>{{item.stars_count}}</span>
-                </div>
-                <div class="increasing-item">
-                    <span>{{item.stars_increasing}} stars today</span>
+                <div class="card-action">
+                    <div class="code-item">
+                        <i class="material-icons">code</i>
+                        <span>{{item.language}}</span>
+                    </div>
+                    <div class="star-item">
+                        <i class="material-icons">star</i>
+                        <span>{{item.stars_count}}</span>
+                    </div>
+                    <div class="increasing-item">
+                        <span>{{item.stars_increasing}} stars today</span>
+                    </div>
                 </div>
             </div>
         </div>

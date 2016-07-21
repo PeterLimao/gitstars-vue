@@ -38,7 +38,9 @@
     <div id="icon-translate">
         <svg viewBox="0 0 100 100" :class="type" :style="rotate">
             <g transform="translate(50, 50)">
-                <line x1="-3" y1="0" x2="3" y2="0" v-for="line in lines" :stroke="color"></line>
+                <line x1="-3" y1="0" x2="3" y2="0" :stroke="color"></line>
+                <line x1="-3" y1="0" x2="3" y2="0" :stroke="color"></line>
+                <line x1="-3" y1="0" x2="3" y2="0" :stroke="color"></line>
             </g>
         </svg>
     </div>
@@ -49,12 +51,7 @@
             return {
                 rotate: {
                     transform: 'rotate(0)'
-                },
-                lines: [
-                    {color: this.color},
-                    {color: this.color},
-                    {color: this.color}
-                ]
+                }
             }
         },
         props: {

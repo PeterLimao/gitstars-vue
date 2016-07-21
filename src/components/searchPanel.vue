@@ -16,6 +16,7 @@
 
     .list-content {
         padding: 20px 10px;
+        padding-bottom: 50px;
     }
 </style>
 <template>
@@ -42,6 +43,11 @@
     import {setSearch} from 'actions';
 
     export default {
+        data () {
+            return {
+                isScroll: true
+            }
+        },
         vuex: {
             getters: {
                 hotwords: (state) => state.hotwords,
@@ -53,6 +59,12 @@
                 setLoad,
                 setSearch
             }
+        },
+        ready () {
+            window.addEventListener('scroll', this.scrollHandler);
+        },
+        destroyed () {
+            window.removeEventListener('scroll', this.scrollHandler);
         },
         methods: {
             tredingSearch (keywords) {
@@ -67,6 +79,16 @@
                         this.setSearch(true);
                     }
                 });
+            },
+            scrollHandler () {
+                if (!this.isScroll || !this.isSearch) return;
+
+                let winH = window.screen.availHeight;
+                let top = document.documentElement.scrollTop || document.body.scrollTop;
+                if ((winH + top) >= this.$el.offsetHeight - 200) {
+                    this.isScroll = false;
+                    this.$progress.start();
+                }
             }
         },
         components: {

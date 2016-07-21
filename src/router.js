@@ -4,7 +4,6 @@
  */
 import State from 'state';
 
-
 export default (router) => {
     router.map({
         '*': {

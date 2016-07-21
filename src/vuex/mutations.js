@@ -26,7 +26,7 @@ export default {
         state.trendingList = list;
     },
     SET_SEARCH_TRENDING_LIST (state, list) {
-        state.searchTrendingList = list;
+        state.searchTrendingList = state.searchTrendingList.concat(list);
     },
     SET_HOTWORDS (state, hotwords) {
         state.hotwords = hotwords;
