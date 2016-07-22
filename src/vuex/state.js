@@ -8,6 +8,8 @@ export default {
     currentLan: 'all',
     detailValue: '',
     showNav: false,
+    cacheKeywords: '',
+    searchLoadmoreIndex: 1,
     hotwords: [],
     languageList: [],
     trendingList: [],

@@ -41,9 +41,9 @@ export const setTredingList = ({dispatch}, type) => {
     });
 };
 
-export const setSearchTredingList = ({dispatch}, params) => {
+export const setSearchTredingList = ({dispatch}, params, isFirst = true) => {
     return search(params).then((response) => {
-        dispatch('SET_SEARCH_TRENDING_LIST', response.data.items);
+        dispatch('SET_SEARCH_TRENDING_LIST', response.data.items, isFirst);
         return true;
     });
 };
@@ -53,4 +53,12 @@ export const setHotwords = ({dispatch}) => {
         dispatch('SET_HOTWORDS', response.data);
         return true;
     });
+};
+
+export const setSearchLoadmoreIndex = ({dispatch}, index) => {
+    dispatch('SET_SEARCH_LOADMORE_INDEX', index);
+};
+
+export const setCacheKeywords = ({dispatch}, keywords) => {
+    dispatch('SET_CACHE_KEYWORDS', keywords);
 };

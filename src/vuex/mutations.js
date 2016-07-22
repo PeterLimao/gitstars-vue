@@ -25,10 +25,20 @@ export default {
     SET_TRENDING_LIST (state, list) {
         state.trendingList = list;
     },
-    SET_SEARCH_TRENDING_LIST (state, list) {
-        state.searchTrendingList = state.searchTrendingList.concat(list);
+    SET_SEARCH_TRENDING_LIST (state, list, isFirst) {
+        if (isFirst) {
+            state.searchTrendingList = list;
+        } else {
+            state.searchTrendingList = state.searchTrendingList.concat(list);
+        }
     },
     SET_HOTWORDS (state, hotwords) {
         state.hotwords = hotwords;
+    },
+    SET_SEARCH_LOADMORE_INDEX (state, index) {
+        state.searchLoadmoreIndex = index;
+    },
+    SET_CACHE_KEYWORDS (state, keywords) {
+        state.cacheKeywords = keywords;
     }
 };

@@ -65,6 +65,8 @@
     import {setSearchTredingList} from 'actions';
     import {setLoad} from 'actions';
     import {setSearch} from 'actions';
+    import {setCacheKeywords} from 'actions';
+    import {setSearchLoadmoreIndex} from 'actions';
 
     export default {
         data () {
@@ -84,7 +86,9 @@
             actions: {
                 setSearchTredingList,
                 setLoad,
-                setSearch
+                setSearch,
+                setCacheKeywords,
+                setSearchLoadmoreIndex
             }
         },
         methods: {
@@ -109,8 +113,11 @@
                     'per_page': 25
                 }).then((success) => {
                     if (success) {
+                        document.body.scrollTop = 0;
                         this.setLoad(false);
                         this.setSearch(true);
+                        this.setCacheKeywords(this.searchMsg);
+                        this.setSearchLoadmoreIndex(1);
                     }
                 });
             }
