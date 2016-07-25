@@ -13,5 +13,6 @@ export default {
     hotwords: [],
     languageList: [],
     trendingList: [],
-    searchTrendingList: []
+    searchTrendingList: [],
+    starsList: []
 };

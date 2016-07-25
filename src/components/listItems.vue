@@ -52,7 +52,7 @@
             <div class="card" v-for="item in list" transition="item" v-touch:tap="goDetail(item.name, item.readme)">
                 <div class="card-content">
                     <div>
-                        <img v-lazy="item.icon">
+                        <img v-lazy="item.icon" v-if="item.icon">
                         <span class="card-title">
                             {{item.name}}
                         </span>
@@ -70,7 +70,7 @@
                         <i class="material-icons">star</i>
                         <span>{{item.stars_count}}</span>
                     </div>
-                    <div class="increasing-item">
+                    <div class="increasing-item" v-if="item.stars_increasing">
                         <span>{{item.stars_increasing}} stars today</span>
                     </div>
                 </div>

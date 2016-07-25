@@ -32,6 +32,13 @@ export default {
             state.searchTrendingList = state.searchTrendingList.concat(list);
         }
     },
+    SET_STARS_LIST (state, list, isFirst) {
+        if (isFirst) {
+            state.starsList = list;
+        } else {
+            state.starsList = state.starsList.concat(list);
+        }
+    },
     SET_HOTWORDS (state, hotwords) {
         state.hotwords = hotwords;
     },

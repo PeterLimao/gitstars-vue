@@ -6,6 +6,7 @@ import {getLanguage} from 'api';
 import {getTrending} from 'api';
 import {search} from 'api';
 import {getHotwords} from 'api';
+import {getStars} from 'api';
 
 export const setShowNav = ({dispatch}, isShow) => {
     dispatch('SET_SHOW_NAV', isShow);
@@ -44,6 +45,13 @@ export const setTredingList = ({dispatch}, type) => {
 export const setSearchTredingList = ({dispatch}, params, isFirst = true) => {
     return search(params).then((response) => {
         dispatch('SET_SEARCH_TRENDING_LIST', response.data.items, isFirst);
+        return true;
+    });
+};
+
+export const setStarsList = ({dispatch}, params, isFirst = true) => {
+    return getStars(params).then((response) => {
+        dispatch('SET_STARS_LIST', response.data, isFirst);
         return true;
     });
 };
