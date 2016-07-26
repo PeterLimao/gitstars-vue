@@ -21,7 +21,7 @@
 </style>
 <template>
     <footer class="z-depth-1">
-        <div v-touch:tap="router('/home')">
+        <div v-touch:tap="router('/trending')">
                 <span class="material-icons" :style="{color: homeColor}">equalizer</span>
                 <span :style="{color: homeColor}">Trending</span>
         </div>
@@ -29,7 +29,7 @@
                 <span class="material-icons" :style="{color: searchColor}">search</span>
                 <span :style="{color: searchColor}">Discover</span>
         </div>
-        <div v-touch:tap="router('/more')">
+        <div v-touch:tap="router('/stars')">
                 <span class="material-icons" :style="{color: moreColor}">star</span>
                 <span :style="{color: moreColor}">Star</span>
         </div>
@@ -52,7 +52,7 @@
                 });
             },
             changeState (path) {
-                if (path === '/home') {
+                if (path === '/trending') {
                     this.homeColor = '#673ab7';
                     this.searchColor = '#888';
                     this.moreColor = '#888';
@@ -62,7 +62,7 @@
                     this.searchColor = '#673ab7';
                     this.moreColor = '#888';
                 }
-                if (path === '/more') {
+                if (path === '/stars') {
                     this.homeColor = '#888';
                     this.searchColor = '#888';
                     this.moreColor = '#673ab7';

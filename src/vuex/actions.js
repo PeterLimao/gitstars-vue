@@ -67,6 +67,14 @@ export const setSearchLoadmoreIndex = ({dispatch}, index) => {
     dispatch('SET_SEARCH_LOADMORE_INDEX', index);
 };
 
+export const setStarsLoadmoreIndex = ({dispatch}, index) => {
+    dispatch('SET_STARS_LOADMORE_INDEX', index);
+};
+
 export const setCacheKeywords = ({dispatch}, keywords) => {
     dispatch('SET_CACHE_KEYWORDS', keywords);
+};
+
+export const setStarsCacheKeywords = ({dispatch}, keywords) => {
+    dispatch('SET_STARS_CACHE_KEYWORDS', keywords);
 };

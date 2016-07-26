@@ -67,7 +67,7 @@
             },
             rewriteUrl () {
                 if (this.$route.path === '/') {
-                    this.$route.router.replace('/home');
+                    this.$route.router.replace('/trending');
                 }
             }
         },

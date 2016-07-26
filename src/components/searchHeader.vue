@@ -82,15 +82,6 @@
                 }
             }
         },
-        vuex: {
-            actions: {
-                setSearchTredingList,
-                setLoad,
-                setSearch,
-                setCacheKeywords,
-                setSearchLoadmoreIndex
-            }
-        },
         methods: {
             showInput () {
                 let width = this.isShowInput ? '290px' : '0';
@@ -106,20 +97,7 @@
                 this.isShowInput = !this.isShowInput;
             },
             execSearch () {
-                this.setLoad(true);
-                this.setSearchTredingList({
-                    q: this.searchMsg,
-                    page: 1,
-                    'per_page': 25
-                }).then((success) => {
-                    if (success) {
-                        document.body.scrollTop = 0;
-                        this.setLoad(false);
-                        this.setSearch(true);
-                        this.setCacheKeywords(this.searchMsg);
-                        this.setSearchLoadmoreIndex(1);
-                    }
-                });
+                this.$dispatch('searchResult', this.searchMsg);
             }
         }
     };

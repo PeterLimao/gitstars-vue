@@ -245,7 +245,7 @@
             },
             getSubFileNav (name, path) {
                 this.isLoad = true;
-                this.$http.get(path).then((response) => {
+                this.$http.get(path).then(() => {
                     this.isLoad = false;
                     this.isShowDetailFile = false;
                     this.isShowDetailPic = false;
@@ -266,7 +266,7 @@
             },
             showCode (name, path, callback) {
                 this.isLoad = true;
-                this.$http.get(path).then((response) => {
+                this.$http.get(path).then(() => {
                     this.fileIndex++;
                     if (typeof response.data === 'object') {
                         response.data = JSON.stringify(response.data);

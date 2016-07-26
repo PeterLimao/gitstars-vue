@@ -45,7 +45,13 @@ export default {
     SET_SEARCH_LOADMORE_INDEX (state, index) {
         state.searchLoadmoreIndex = index;
     },
+    SET_STARS_LOADMORE_INDEX (state, index) {
+        state.starsLoadmoreIndex = index;
+    },
     SET_CACHE_KEYWORDS (state, keywords) {
         state.cacheKeywords = keywords;
+    },
+    SET_STARS_CACHE_KEYWORDS (state, keywords) {
+        state.starsCacheKeywords = keywords;
     }
 };

@@ -3,6 +3,7 @@ var ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
 
 var myAlias = {
     components: Path.join(__dirname, '../src/components'),
+    view: Path.join(__dirname, '../src/view'),
     'vux-components': 'vux/dist/components',
     state: Path.join(__dirname, '../src/vuex/state'),
     mutations: Path.join(__dirname, '../src/vuex/mutations'),

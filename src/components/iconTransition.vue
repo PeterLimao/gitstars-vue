@@ -1,4 +1,5 @@
 <style scoped>
+    /*基本样式*/
     svg {
         width: 100%;
         height: 100%;

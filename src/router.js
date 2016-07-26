@@ -8,32 +8,32 @@ export default (router) => {
     router.map({
         '*': {
             component (resolve) {
-                require(['components/homePanel'], resolve);
+                require(['view/trendingPanel'], resolve);
             }
         },
         '/': {
             component (resolve) {
-                require(['components/homePanel'], resolve);
+                require(['view/trendingPanel'], resolve);
             }
         },
-        '/home': {
+        '/trending': {
             component (resolve) {
-                require(['components/homePanel'], resolve);
+                require(['view/trendingPanel'], resolve);
             }
         },
         '/search': {
             component (resolve) {
-                require(['components/searchPanel'], resolve);
+                require(['view/searchPanel'], resolve);
             }
         },
-        '/more': {
+        '/stars': {
             component (resolve) {
-                require(['components/morePanel'], resolve);
+                require(['view/starsPanel'], resolve);
             }
         },
         '/detail/*name': {
             component (resolve) {
-                require(['components/readmeDetail'], resolve);
+                require(['view/readmeDetail'], resolve);
             }
         }
     });
