@@ -245,7 +245,7 @@
             },
             getSubFileNav (name, path) {
                 this.isLoad = true;
-                this.$http.get(path).then(() => {
+                this.$http.get(path).then((response) => {
                     this.isLoad = false;
                     this.isShowDetailFile = false;
                     this.isShowDetailPic = false;

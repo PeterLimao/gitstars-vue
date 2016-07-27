@@ -25,6 +25,13 @@ Config.plugins = (Config.plugins || []).concat([
         inject: true,
         hash: true
     }),
+    new HtmlWebpackPlugin({
+        filename: '../404.html',
+        template: 'src/apiPages/notFound/notFound.html',
+        chunks: ['notFound'],
+        inject: true,
+        hash: true
+    }),
     new Webpack.optimize.UglifyJsPlugin({
         compress: {
             warnings: false

@@ -4,7 +4,6 @@ var ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
 var myAlias = {
     components: Path.join(__dirname, '../src/components'),
     view: Path.join(__dirname, '../src/view'),
-    'vux-components': 'vux/dist/components',
     state: Path.join(__dirname, '../src/vuex/state'),
     mutations: Path.join(__dirname, '../src/vuex/mutations'),
     store: Path.join(__dirname, '../src/vuex/store'),
@@ -17,12 +16,13 @@ var myAlias = {
 module.exports = {
     entry: {
         app: ['./src/app.js'],
-        fileContent: ['./src/apiPages/fileContent/fileContent.js']
+        fileContent: ['./src/apiPages/fileContent/fileContent.js'],
+        notFound: ['./src/apiPages/notFound/notFound.js']
     },
     output: {
         path: Path.join(__dirname, '../dist/assets/'),
         filename: '[name].js',
-        chunkname: '[id].chunk.js'
+        chunkFilename: '[id].[name].[hash].js'
     },
     module: {
         loaders: [

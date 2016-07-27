@@ -24,12 +24,6 @@ Vue.use(VueLazyload, {
     try: 3
 });
 
-import * as DirectiveMap from './directive';
-
-Object.keys(DirectiveMap).forEach((key) => {
-    Vue.directive(key, DirectiveMap[key]);
-});
-
 import App from './app.vue';
 import RouterMap from './router';
 

@@ -5,6 +5,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 Config.entry.app.unshift("webpack-dev-server/client?http://localhost:8080/", "webpack/hot/dev-server");
 Config.entry.fileContent.unshift("webpack-dev-server/client?http://localhost:8080/", "webpack/hot/dev-server");
+Config.entry.notFound.unshift("webpack-dev-server/client?http://localhost:8080/", "webpack/hot/dev-server");
 Config.plugins = (Config.plugins || []).concat([
     new Webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
@@ -20,8 +21,16 @@ Config.plugins = (Config.plugins || []).concat([
         chunks: ['fileContent'],
         inject: true,
         hash: true
+    }),
+    new HtmlWebpackPlugin({
+        filename: 'notFound.html',
+        template: 'src/apiPages/notFound/notFound.html',
+        chunks: ['notFound'],
+        inject: true,
+        hash: true
     })
 ]);
+
 Config.devtool = '#eval-source-map';
 
 var server = new WebpackDevServer(Webpack(Config), {

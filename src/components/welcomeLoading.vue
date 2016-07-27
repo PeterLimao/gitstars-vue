@@ -6,56 +6,31 @@
         height: 100%;
         top: 0;
         left: 0;
-        background: #fff;
+        background: #673ab7;
         z-index: 9999;
     }
 
     pre {
-        background: #000000;
         text-indent: -4.8rem;
         position: absolute;
         z-index: 1;
         left: 50%;
         top: 50%;
-        margin-left: -150px;
+        margin-left: -100px;
         margin-top: -90px;
         color: #fff;
         font-weight: bold;
         height: 180px;
-        width: 300px;
+        width: 200px;
         padding: 10px;
-        border-radius: 5px;
-        border: 5px solid #5D5959;
-    }
-
-    .footer {
-        position: absolute;
-        width: 100%;
-        left: 0;
-        top: 55%;
-    }
-
-    .footer div:first-child {
-        margin: 0 auto;
-        width: 10px;
-        height: 100px;
-        background: #5D5959;
-    }
-
-    .footer div:last-child {
-        margin: 0 auto;
-        width: 100px;
-        height: 10px;
-        background: #5D5959;
     }
 
     .fade-transition {
-        transition: all 1s ease;
-        opacity: 1;
+        transition: all 0.5s ease;
     }
 
     .fade-leave {
-        opacity: 0;
+        transform: translateY(-100%);
     }
 </style>
 <template>
@@ -63,10 +38,6 @@
         <pre>
             {{innerContent}}
         </pre>
-        <div class="footer">
-            <div></div>
-            <div></div>
-        </div>
     </div>
 </template>
 <script>
@@ -81,10 +52,23 @@
             }
         },
         ready () {
+            this.innerContent = '';
             getConfig().then((response) => {
                 this.content = response.data.welcome;
                 this.renderContent(() => {
-                    this.isShow = false;
+                    let index = 1;
+                    let interval = setInterval(() => {
+                        if (index > 4) {
+                            clearInterval(interval);
+                            this.isShow = false;
+                        }
+                        if (index % 2 === 0) {
+                            this.innerContent = this.innerContent + '_';
+                        } else {
+                            this.innerContent = this.innerContent.substring(0, this.innerContent.length - 1);
+                        }
+                        index++;
+                    }, 1000);
                 });
             });
         },
@@ -97,9 +81,10 @@
                         if (callback) callback();
                         return;
                     }
-                    this.innerContent += this.content.charAt(index);
+                    this.innerContent = this.innerContent.substring(0, this.innerContent.length - 1);
+                    this.innerContent += this.content.charAt(index) + '_';
                     index++;
-                }, 100);
+                }, 150);
             }
         }
     };
