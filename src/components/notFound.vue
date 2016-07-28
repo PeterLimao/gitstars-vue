@@ -9,6 +9,16 @@
     <div id="not-found">
         <i class="material-icons large">error</i>
         <h3>Oops!</h3>
-        <span>This repo may not have .README file.</span>
+        <span>{{content}}</span>
     </div>
 </template>
+<script>
+    export default {
+        props: {
+            content: {
+                type: String,
+                default: 'This repo may not have .README file.'
+            }
+        }
+    };
+</script>

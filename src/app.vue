@@ -50,7 +50,6 @@
         },
         created () {
             this.getHttp();
-            this.rewriteUrl();
         },
         ready () {
             this.$progress.setHolder(this.myProgress);
@@ -64,11 +63,6 @@
                 ]).then((responseList) => {
                     this.setLoad(false);
                 });
-            },
-            rewriteUrl () {
-                if (this.$route.path === '/') {
-                    this.$route.router.replace('/trending');
-                }
             }
         },
         store: Store,

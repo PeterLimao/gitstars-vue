@@ -139,7 +139,7 @@
                 <file-panel-file :file-content="fileContent" v-if="isShowDetailFile" transition="list"></file-panel-file>
                 <file-panel-pic :pic-src="fileSrc" v-if="isShowDetailPic" transition="list"></file-panel-pic>
                 <div class="file-panel-list" v-if="!isShowDetailFile && !isShowDetailPic">
-                    <div class="file-item" v-for="item in fileList" v-touch:tap="openDetailNav(item)" transition="list">
+                    <div class="file-item" v-for="item in fileList | orderBy 'type'" v-touch:tap="openDetailNav(item)" transition="list">
                         <i class="material-icons" v-show="isFolder(item.type)">folder_open</i>
                         <i class="material-icons" v-show="!isFolder(item.type)">content_copy</i>
                         <span>{{item.name}}</span>
@@ -266,7 +266,7 @@
             },
             showCode (name, path, callback) {
                 this.isLoad = true;
-                this.$http.get(path).then(() => {
+                this.$http.get(path).then((response) => {
                     this.fileIndex++;
                     if (typeof response.data === 'object') {
                         response.data = JSON.stringify(response.data);

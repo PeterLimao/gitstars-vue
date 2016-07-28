@@ -68,7 +68,7 @@
                             this.innerContent = this.innerContent.substring(0, this.innerContent.length - 1);
                         }
                         index++;
-                    }, 1000);
+                    }, 500);
                 });
             });
         },
