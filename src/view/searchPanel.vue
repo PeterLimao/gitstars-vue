@@ -111,6 +111,8 @@
         },
         events: {
             searchResult (msg) {
+                if (!msg) return;
+
                 this.setLoad(true);
                 this.setSearchTredingList({
                     q: msg,

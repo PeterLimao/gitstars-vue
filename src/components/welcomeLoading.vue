@@ -25,6 +25,15 @@
         padding: 10px;
     }
 
+    .skip-text {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        color: #fff;
+        z-index: 9999;
+        font-style: italic;
+    }
+
     .fade-transition {
         transition: all 0.5s ease;
     }
@@ -38,6 +47,9 @@
         <pre>
             {{innerContent}}
         </pre>
+        <span class="skip-text" v-touch:tap="close">
+            Skip
+        </span>
     </div>
 </template>
 <script>
@@ -85,6 +97,9 @@
                     this.innerContent += this.content.charAt(index) + '_';
                     index++;
                 }, 150);
+            },
+            close () {
+                this.isShow = false;
             }
         }
     };

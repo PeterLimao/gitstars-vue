@@ -8,7 +8,8 @@
         width: 100%;
         display: flex;
         height: 55px;
-        background: #fff;
+        background: rgba(255,255,255,.8);
+        backdrop-filter: brightness(1.5) blur(4px);
     }
 
     footer div {
