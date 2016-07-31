@@ -12,7 +12,7 @@
     }
 
     i {
-        position: fixed;
+        position: absolute;
         right: 10px;
         top: 10px;
         color: #673ab7;
@@ -34,7 +34,7 @@
     }
 
     .nav-enter, .nav-leave {
-        width: 0;
+        transform: translateX(100%);
     }
 </style>
 <template>

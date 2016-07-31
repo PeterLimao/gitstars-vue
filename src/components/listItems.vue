@@ -52,7 +52,7 @@
             <div class="card" v-for="item in list" transition="item" v-touch:tap="goDetail(item.name, item.readme)">
                 <div class="card-content">
                     <div>
-                        <img v-lazy="item.icon" v-if="item.icon">
+                        <img :src="loadingImg" @load="imgPreload($event, item.icon)" v-if="item.icon">
                         <span class="card-title">
                             {{item.name}}
                         </span>
@@ -79,8 +79,14 @@
 </template>
 <script>
     import {setDetailValue} from 'actions';
+    import loadingImg from '../assets/img/9.pic.jpg';
 
     export default {
+        data () {
+            return {
+                loadingImg
+            }
+        },
         vuex: {
             actions: {
                 setDetailValue
@@ -95,6 +101,14 @@
                     backUrl: this.$route.path,
                     readmeUrl: readmeUrl
                 });
+            },
+            imgPreload (event, url) {
+                let img = new Image();
+                let item = event.target;
+                img.src = url;
+                img.onload = () => {
+                    item.src = url;
+                };
             }
         },
         props: {

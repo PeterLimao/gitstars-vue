@@ -17,6 +17,11 @@
     .list-content {
         padding: 20px 10px;
         padding-bottom: 50px;
+        overflow-y: scroll;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        -webkit-overflow-scrolling: touch;
     }
 </style>
 <template>
@@ -30,7 +35,7 @@
                 </li>
             </ul>
         </div>
-        <div class="list-content" v-else>
+        <div class="list-content" @scroll="scrollHandler" v-else>
             <list-items :list="searchTredingList"></list-items>
         </div>
     </div>
@@ -66,12 +71,6 @@
                 setCacheKeywords
             }
         },
-        ready () {
-            window.addEventListener('scroll', this.scrollHandler);
-        },
-        destroyed () {
-            window.removeEventListener('scroll', this.scrollHandler);
-        },
         methods: {
             tredingSearch (keywords) {
                 this.setLoad(true);
@@ -90,8 +89,10 @@
                 if (!this.isScroll || !this.isSearch) return;
 
                 let winH = window.screen.availHeight;
-                let top = document.documentElement.scrollTop || document.body.scrollTop;
-                if ((winH + top) >= this.$el.offsetHeight - 500) {
+                let top = this.$el.querySelector('.list-content').scrollTop;
+                let height = this.$el.querySelector('#list-items').offsetHeight;
+
+                if ((winH + top) >= height - 500) {
                     this.isScroll = false;
                     this.$progress.start(3000);
                     let index = this.searchLoadmoreIndex + 1;

@@ -3,6 +3,11 @@
     .list-content {
         padding: 20px 10px;
         padding-bottom: 50px;
+        overflow-y: scroll;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        -webkit-overflow-scrolling: touch;
     }
 </style>
 <template>
@@ -10,7 +15,7 @@
         <login v-if="shouldLogin"></login>
         <div class="star-panel" v-else>
             <search-header></search-header>
-            <div class="list-content" v-else>
+            <div class="list-content" @scroll="scrollHandler" v-else>
                 <list-items :list="starsList"></list-items>
             </div>
         </div>
@@ -49,10 +54,6 @@
             if (this.starsList.length === 0) {
                 this.getStarsList();
             }
-            window.addEventListener('scroll', this.scrollHandler);
-        },
-        destroyed () {
-            window.removeEventListener('scroll', this.scrollHandler);
         },
         methods: {
             getStarsList () {
@@ -69,8 +70,10 @@
                 if (!this.isScroll || this.shouldLogin) return;
 
                 let winH = window.screen.availHeight;
-                let top = document.documentElement.scrollTop || document.body.scrollTop
-                if ((winH + top) >= this.$el.offsetHeight - 500) {
+                let top = this.$el.querySelector('.list-content').scrollTop;
+                let height = this.$el.querySelector('#list-items').offsetHeight;
+
+                if ((winH + top) >= height - 500) {
                     this.isScroll = false;
                     this.$progress.start(3000);
                     let index = this.starsLoadmoreIndex + 1;
