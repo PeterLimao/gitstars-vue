@@ -35,7 +35,7 @@
                 </li>
             </ul>
         </div>
-        <div class="list-content" @scroll="scrollHandler" v-else>
+        <div class="list-content" @scroll="scrollHandler" v-else v-lazy>
             <list-items :list="searchTredingList"></list-items>
         </div>
     </div>
@@ -120,7 +120,7 @@
                     page: 1,
                     'per_page': 25
                 }).then(() => {
-                    document.body.scrollTop = 0;
+                    this.$el.querySelector('.list-content').scrollTop = 0;
                     this.setLoad(false);
                     this.setSearch(true);
                     this.setCacheKeywords(msg);

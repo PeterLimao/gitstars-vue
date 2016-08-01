@@ -52,7 +52,7 @@
             <div class="card" v-for="item in list" transition="item" v-touch:tap="goDetail(item.name, item.readme)">
                 <div class="card-content">
                     <div>
-                        <img :src="loadingImg" @load="imgPreload($event, item.icon)" v-if="item.icon">
+                        <img v-if="item.icon" :lazy-img="item.icon" :src="loadingImg">
                         <span class="card-title">
                             {{item.name}}
                         </span>
@@ -103,12 +103,16 @@
                 });
             },
             imgPreload (event, url) {
-                let img = new Image();
                 let item = event.target;
-                img.src = url;
-                img.onload = () => {
-                    item.src = url;
-                };
+
+                let timeout = setTimeout(() => {
+                    let img = new Image();
+                    img.src = url;
+                    img.onload = () => {
+                        item.setAttribute('src', url);
+                        clearTimeout(timeout);
+                    };
+                }, 300);
             }
         },
         props: {

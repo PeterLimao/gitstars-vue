@@ -99,7 +99,7 @@
                     page: 1,
                     'per_page': 25
                 }).then(() => {
-                    document.body.scrollTop = 0;
+                    this.$el.querySelector('.list-content').scrollTop = 0;
                     this.shouldLogin = false;
                     this.setLoad(false);
                     this.setStarsLoadmoreIndex(1);
