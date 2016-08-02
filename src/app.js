@@ -8,7 +8,6 @@ import VueTouch from 'vue-touch';
 import VueAnimatedList from 'vue-animated-list';
 import Progress from 'vue-progressbar';
 
-import loadingImg from './assets/img/9.pic.jpg';
 import './assets/css/base';
 
 Vue.config.debug = process.env.NODE_ENV === 'production' ? false : true;

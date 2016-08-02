@@ -48,7 +48,10 @@ module.exports = {
             },
             {
                 test: /\.(woff|woff2|ttf|eot)$/,
-                loader: "url"
+                loader: "url",
+                query: {
+                    limit: 10000
+                }
             }
         ]
     },

@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import loadingImg from './assets/img/9.pic.jpg';
 
 export const lazy = () => {
     let nodeList = [];
@@ -28,6 +29,9 @@ export const lazy = () => {
 
     const scrollHandler = () => {
         nodeList.forEach((nodeitem) => {
+            if (!nodeitem.getAttribute('src')) {
+                nodeitem.setAttribute('src', loadingImg);
+            }
             if (nodeitem.getBoundingClientRect().top >= (window.screen.availHeight - 100) || nodeitem.getBoundingClientRect().top <= 50) return;
             if (nodeitem.getAttribute('lazy-status')) return;
 
@@ -73,9 +77,6 @@ export const lazy = () => {
         bind () {
             this.el.addEventListener('scroll', scrollHandler);
             init(this.el);
-        },
-        update () {
-            console.log(123);
         },
         unbind () {
             this.el.removeEventListener('scroll', scrollHandler);

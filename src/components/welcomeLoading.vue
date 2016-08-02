@@ -16,12 +16,12 @@
         z-index: 1;
         left: 50%;
         top: 50%;
-        margin-left: -100px;
+        margin-left: -110px;
         margin-top: -90px;
         color: #fff;
         font-weight: bold;
         height: 180px;
-        width: 200px;
+        width: 220px;
         padding: 10px;
     }
 
