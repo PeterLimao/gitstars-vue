@@ -20,7 +20,7 @@ module.exports = {
         notFound: ['./src/apiPages/notFound/notFound.js']
     },
     output: {
-        path: Path.join(__dirname, '../dist/assets/'),
+        path: Path.join(__dirname, '../dist'),
         filename: '[name].js',
         chunkFilename: '[id].[name].[hash].js'
     },
