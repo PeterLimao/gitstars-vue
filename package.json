@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "gitstars webapp",
   "scripts": {
-    "build": "webpack --progress --config build/webpack.prod.config.js",
+    "build": "node build/webpack.prod.config.js",
     "dev": "node build/webpack.dev.config.js",
     "test": "karma start build/karma.conf.js"
   },
@@ -45,6 +45,7 @@
     "karma-spec-reporter": "^0.0.26",
     "karma-webpack": "1.7.0",
     "mocha": "1.21.4",
+    "shelljs": "0.7.3",
     "should": "9.0.2",
     "socket.io": "1.4.8",
     "style-loader": "0.13.1",

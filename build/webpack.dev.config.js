@@ -1,34 +1,22 @@
 var Config = require('./webpack.base.config');
 var Webpack = require('webpack');
 var WebpackDevServer = require('webpack-dev-server');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+var ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
 
 Config.entry.app.unshift("webpack-dev-server/client?http://localhost:8080/", "webpack/hot/dev-server");
 Config.entry.fileContent.unshift("webpack-dev-server/client?http://localhost:8080/", "webpack/hot/dev-server");
 Config.entry.notFound.unshift("webpack-dev-server/client?http://localhost:8080/", "webpack/hot/dev-server");
+Config.output.filename = '[name].js';
+Config.output.chunkFilename = '[id].[name].[hash].js';
+Config.module.loaders.forEach(function(loader) {
+    if (loader.loader === 'url') {
+        loader.query.name = '[name].[hash].[ext]';
+    }
+});
+
 Config.plugins = (Config.plugins || []).concat([
-    new Webpack.HotModuleReplacementPlugin(),
-    new HtmlWebpackPlugin({
-        filename: 'app.html',
-        template: 'src/app.html',
-        chunks: ['app'],
-        inject: true,
-        hash: true
-    }),
-    new HtmlWebpackPlugin({
-        filename: 'fileContent.html',
-        template: 'src/apiPages/fileContent/fileContent.html',
-        chunks: ['fileContent'],
-        inject: true,
-        hash: true
-    }),
-    new HtmlWebpackPlugin({
-        filename: 'notFound.html',
-        template: 'src/apiPages/notFound/notFound.html',
-        chunks: ['notFound'],
-        inject: true,
-        hash: true
-    })
+    new ExtractTextWebpackPlugin('[name].css'),
+    new Webpack.HotModuleReplacementPlugin()
 ]);
 
 Config.devtool = '#eval-source-map';

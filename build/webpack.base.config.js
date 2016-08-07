@@ -1,4 +1,5 @@
 var Path = require('path');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
 
 var myAlias = {
@@ -21,8 +22,8 @@ module.exports = {
     },
     output: {
         path: Path.join(__dirname, '../dist'),
-        filename: '[name].js',
-        chunkFilename: '[id].[name].[hash].js'
+        filename: 'js/[name].js',
+        chunkFilename: 'js/[id].[name].[hash].js'
     },
     module: {
         loaders: [
@@ -39,7 +40,8 @@ module.exports = {
                 test: /\.(png|jpeg|jpg)$/,
                 loader: 'url',
                 query: {
-                    limit: 10000
+                    limit: 10000,
+                    name: '../img/[name].[hash].[ext]'
                 }
             },
             {
@@ -50,7 +52,8 @@ module.exports = {
                 test: /\.(woff|woff2|ttf|eot)$/,
                 loader: "url",
                 query: {
-                    limit: 10000
+                    limit: 10000,
+                    name: '../font/[name].[hash].[ext]'
                 }
             }
         ]
@@ -64,6 +67,26 @@ module.exports = {
         plugins: ['transform-runtime']
     },
     plugins: [
-        new ExtractTextWebpackPlugin('[name].css')
+        new HtmlWebpackPlugin({
+            filename: 'app.html',
+            template: 'src/app.html',
+            chunks: ['app'],
+            inject: true,
+            hash: true
+        }),
+        new HtmlWebpackPlugin({
+            filename: 'fileContent.html',
+            template: 'src/apiPages/fileContent/fileContent.html',
+            chunks: ['fileContent'],
+            inject: true,
+            hash: true
+        }),
+        new HtmlWebpackPlugin({
+            filename: 'notFound.html',
+            template: 'src/apiPages/notFound/notFound.html',
+            chunks: ['notFound'],
+            inject: true,
+            hash: true
+        })
     ]
 };
