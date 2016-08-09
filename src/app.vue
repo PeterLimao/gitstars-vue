@@ -4,7 +4,7 @@
         <welcome-loading></welcome-loading>
         <loading v-if="isLoad"></loading>
         <section>
-            <router-view></router-view>
+            <router-view keep-alive></router-view>
             <v-footer></v-footer>
         </section>
     </div>

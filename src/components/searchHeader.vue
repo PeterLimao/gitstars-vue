@@ -42,7 +42,12 @@
         border-bottom: 0;
         margin-bottom: 0;
         margin-left: 37px;
-        margin-right: 30px;
+        margin-right: 10px;
+    }
+
+    .input-msg i {
+        margin-right: 5%;
+        color: #673ab7;
     }
 
     input[type=text]:focus {
@@ -58,21 +63,23 @@
         </div>
         <div class="input-msg z-depth-1" :style="inputStyle">
             <input type="text" placeholder="Search" @keyup.enter="execSearch" v-model="searchMsg">
+            <i class="material-icons" :style="{'font-size': fontSize}" v-touch:tap="execSearch">done</i>
         </div>
     </header>
 </template>
 <script>
-    import {setSearchTredingList} from 'actions';
-    import {setLoad} from 'actions';
-    import {setSearch} from 'actions';
-    import {setCacheKeywords} from 'actions';
-    import {setSearchLoadmoreIndex} from 'actions';
+    import { setSearchTredingList } from 'actions';
+    import { setLoad } from 'actions';
+    import { setSearch } from 'actions';
+    import { setCacheKeywords } from 'actions';
+    import { setSearchLoadmoreIndex } from 'actions';
 
     export default {
         data () {
             return {
                 searchMsg: '',
                 isShowInput: false,
+                fontSize: '0',
                 inputStyle: {
                     width: '0'
                 },
@@ -84,16 +91,14 @@
         },
         methods: {
             showInput () {
-                let width = this.isShowInput ? '290px' : '0';
+                let width = this.isShowInput ? window.screen.availWidth + 'px' : '0';
                 let color = this.isShowInput ? '#673ab7' : '#fff';
                 let background = this.isShowInput ? '#fff' : '#673ab7';
-                this.inputStyle = {
-                    width
-                };
-                this.searchIconStyle = {
-                    color,
-                    background
-                }
+                let fontSize = this.isShowInput ? '24px' : '0';
+
+                this.inputStyle = { width };
+                this.searchIconStyle = { color, background }
+                this.fontSize = fontSize;
                 this.isShowInput = !this.isShowInput;
             },
             execSearch () {

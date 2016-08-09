@@ -78,3 +78,15 @@ export const setCacheKeywords = ({dispatch}, keywords) => {
 export const setStarsCacheKeywords = ({dispatch}, keywords) => {
     dispatch('SET_STARS_CACHE_KEYWORDS', keywords);
 };
+
+export const setTrendingScrollPosition = ({dispatch}, position) => {
+    dispatch('SET_TRENDING_SCROLL_POSITION', position);
+};
+
+export const setSearchScrollPosition = ({dispatch}, position) => {
+    dispatch('SET_TRENDING_SCROLL_POSITION', position);
+};
+
+export const setStarsScrollPosition = ({dispatch}, position) => {
+    dispatch('SET_STARS_SCROLL_POSITION', position);
+};

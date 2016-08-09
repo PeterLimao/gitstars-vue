@@ -304,6 +304,11 @@
                 required: true
             }
         },
+        events: {
+            hideFileNav () {
+                this.showFileNav();
+            }
+        },
         components: {
             Loading,
             FilePanelFile,

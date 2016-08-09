@@ -99,23 +99,30 @@
                 setLoad
             }
         },
-        ready () {
-            if (this.detailValue.readmeUrl) {
-                this.setLoad(true);
-                this.$http.get(this.detailValue.readmeUrl).then((response) => {
-                    this.setLoad(false);
-                    this.markdownHtml = Marked(Base64.decode(response.data.content));
-                }).catch((err) => {
-                    if (err.status === 404) {
-                        this.setLoad(false);
-                        this.detailValue.readmeUrl = '';
-                    }
-                });
+        route: {
+            activate () {
+                this.initData();
             }
         },
         methods: {
+            initData () {
+                this.markdownHtml = '';
+                if (this.detailValue.readmeUrl) {
+                    this.setLoad(true);
+                    this.$http.get(this.detailValue.readmeUrl).then((response) => {
+                        this.setLoad(false);
+                        this.markdownHtml = Marked(Base64.decode(response.data.content));
+                    }).catch((err) => {
+                        if (err.status === 404) {
+                            this.setLoad(false);
+                            this.detailValue.readmeUrl = '';
+                        }
+                    });
+                }
+            },
             close () {
                 this.$route.router.go(this.detailValue.backUrl);
+                this.$broadcast('hideFileNav');
                 this.setLoad(false);
             }
         },

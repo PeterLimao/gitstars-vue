@@ -120,7 +120,7 @@
                     page: 1,
                     'per_page': 25
                 }).then(() => {
-                    this.$el.querySelector('.list-content').scrollTop = 0;
+                    if (this.$el.querySelector('.list-content')) this.$el.querySelector('.list-content').scrollTop = 0;
                     this.setLoad(false);
                     this.setSearch(true);
                     this.setCacheKeywords(msg);

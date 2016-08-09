@@ -53,5 +53,14 @@ export default {
     },
     SET_STARS_CACHE_KEYWORDS (state, keywords) {
         state.starsCacheKeywords = keywords;
+    },
+    SET_TRENDING_SCROLL_POSITION (state, position) {
+        state.trendingScrollPosition = position;
+    },
+    SET_SEARCH_SCROLL_POSITION (state, position) {
+        state.searchScrollPosition = position;
+    },
+    SET_STARS_SCROLL_POSITION (state, position) {
+        state.starsScrollPosition = position;
     }
 };
