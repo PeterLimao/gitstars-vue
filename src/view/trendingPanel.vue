@@ -22,17 +22,36 @@
     import TrendingHeader from 'components/trendingHeader';
     import Nav from 'components/nav';
     import ListItems from 'components/listItems';
+    import {setTrendingScrollPosition} from 'actions';
 
     export default {
+        route: {
+            activate () {
+                this.$dispatch('footerChangeStateCtrl', '/trending');
+            }
+        },
         vuex: {
             getters: {
-                trendingList: (state) => state.trendingList
+                trendingList: (state) => state.trendingList,
+                trendingScrollPosition: (state) => state.trendingScrollPosition
+            },
+            actions: {
+                setTrendingScrollPosition
             }
         },
         components: {
             TrendingHeader,
             ListItems,
             'v-nav': Nav
+        },
+        events: {
+            setTrendingScrollPosition () {
+                let position = this.$el.querySelector('.list-content').scrollTop;
+                this.setTrendingScrollPosition(position);
+            },
+            setTrendingScrollTop () {
+                this.$el.querySelector('.list-content').scrollTop = 0;
+            }
         }
     };
 </script>

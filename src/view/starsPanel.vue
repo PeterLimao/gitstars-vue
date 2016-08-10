@@ -29,6 +29,7 @@
     import {setLoad} from 'actions';
     import {setStarsCacheKeywords} from 'actions';
     import {setStarsLoadmoreIndex} from 'actions';
+    import {setStarsScrollPosition} from 'actions';
 
     export default {
         data () {
@@ -37,16 +38,23 @@
                 isScroll: true
             }
         },
+        route: {
+            activate () {
+                this.$dispatch('footerChangeStateCtrl', '/stars');
+            }
+        },
         vuex: {
             getters: {
                 starsList: (state) => state.starsList,
-                starsLoadmoreIndex: (state) => state.starsLoadmoreIndex
+                starsLoadmoreIndex: (state) => state.starsLoadmoreIndex,
+                starsScrollPosition: (state) => state.starsScrollPosition
             },
             actions: {
                 setStarsList,
                 setLoad,
                 setStarsCacheKeywords,
-                setStarsLoadmoreIndex
+                setStarsLoadmoreIndex,
+                setStarsScrollPosition
             }
         },
         ready () {
@@ -105,6 +113,10 @@
                     this.setStarsLoadmoreIndex(1);
                     this.setStarsCacheKeywords(msg);
                 });
+            },
+            setStarsScrollPosition () {
+                let position = this.$el.querySelector('.list-content').scrollTop;
+                this.setStarsScrollPosition(position);
             }
         },
         components: {

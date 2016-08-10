@@ -77,6 +77,7 @@
                         if (success) {
                             this.setCurrentLan(type);
                             this.setLoad(false);
+                            this.$dispatch('setTrendingScrollTop');
                         }
                     }
                 });

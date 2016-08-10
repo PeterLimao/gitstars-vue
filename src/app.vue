@@ -71,6 +71,11 @@
             Loading,
             WelcomeLoading,
             Progress
+        },
+        events: {
+            footerChangeStateCtrl (path) {
+                this.$broadcast('footerChangeState', path);
+            }
         }
     };
 </script>

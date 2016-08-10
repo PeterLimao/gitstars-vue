@@ -88,6 +88,7 @@
         },
         methods: {
             goDetail (name, readmeUrl) {
+                this.setScrollPosition();
                 this.$route.router.go('/detail/' + name);
                 this.setDetailValue({
                     owner: name.split('/')[0],
@@ -96,17 +97,22 @@
                     readmeUrl: readmeUrl
                 });
             },
-            imgPreload (event, url) {
-                let item = event.target;
-
-                let timeout = setTimeout(() => {
-                    let img = new Image();
-                    img.src = url;
-                    img.onload = () => {
-                        item.setAttribute('src', url);
-                        clearTimeout(timeout);
-                    };
-                }, 300);
+            setScrollPosition () {
+                let path = this.$route.path;
+                console.log(path);
+                switch (path) {
+                    case '/trending':
+                        this.$dispatch('setTrendingScrollPosition');
+                        break;
+                    case '/search':
+                        this.$dispatch('setSearchScrollPosition');
+                        break;
+                    case '/stars':
+                        this.$dispatch('setStarsScrollPosition');
+                        break;
+                    default:
+                        break;
+                }
             }
         },
         props: {

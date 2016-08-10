@@ -306,6 +306,7 @@
         },
         events: {
             hideFileNav () {
+                if (!this.isShowFileNav) return;
                 this.showFileNav();
             }
         },

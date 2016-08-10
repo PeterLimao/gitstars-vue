@@ -6,6 +6,11 @@ import State from 'state';
 
 export default (router) => {
     router.map({
+        '*': {
+            component (resolve) {
+                require(['view/trendingPanel'], resolve);
+            }
+        },
         '/trending': {
             component (resolve) {
                 require(['view/trendingPanel'], resolve);
@@ -42,9 +47,5 @@ export default (router) => {
         if (/(detail)/g.test(to.path)) {
             State.isLoad = false;
         }
-    });
-
-    router.redirect({
-        '*': '/trending'
     });
 };

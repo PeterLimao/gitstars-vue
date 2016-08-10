@@ -84,7 +84,7 @@ export const setTrendingScrollPosition = ({dispatch}, position) => {
 };
 
 export const setSearchScrollPosition = ({dispatch}, position) => {
-    dispatch('SET_TRENDING_SCROLL_POSITION', position);
+    dispatch('SET_SEARCH_SCROLL_POSITION', position);
 };
 
 export const setStarsScrollPosition = ({dispatch}, position) => {

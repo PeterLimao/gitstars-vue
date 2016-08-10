@@ -48,11 +48,17 @@
     import {setSearch} from 'actions';
     import {setSearchLoadmoreIndex} from 'actions';
     import {setCacheKeywords} from 'actions';
+    import {setSearchScrollPosition} from 'actions';
 
     export default {
         data () {
             return {
                 isScroll: true
+            }
+        },
+        route: {
+            activate () {
+                this.$dispatch('footerChangeStateCtrl', '/search');
             }
         },
         vuex: {
@@ -61,14 +67,16 @@
                 searchTredingList: (state) => state.searchTrendingList,
                 isSearch: (state) => state.isSearch,
                 searchLoadmoreIndex: (state) => state.searchLoadmoreIndex,
-                cacheKeywords: (state) => state.cacheKeywords
+                cacheKeywords: (state) => state.cacheKeywords,
+                searchScrollPosition: (state) => state.searchScrollPosition
             },
             actions: {
                 setSearchTredingList,
                 setLoad,
                 setSearch,
                 setSearchLoadmoreIndex,
-                setCacheKeywords
+                setCacheKeywords,
+                setSearchScrollPosition
             }
         },
         methods: {
@@ -126,6 +134,10 @@
                     this.setCacheKeywords(msg);
                     this.setSearchLoadmoreIndex(1);
                 });
+            },
+            setSearchScrollPosition () {
+                let position = this.$el.querySelector('.list-content').scrollTop;
+                this.setSearchScrollPosition(position);
             }
         },
         components: {

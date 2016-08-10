@@ -47,10 +47,7 @@
         },
         methods: {
             router (path) {
-                this.changeState(path);
-                this.$route.router.go({
-                    path: path
-                });
+                this.$route.router.go({ path: path });
             },
             changeState (path) {
                 if (path === '/trending') {
@@ -68,6 +65,11 @@
                     this.searchColor = '#888';
                     this.moreColor = '#673ab7';
                 }
+            }
+        },
+        events: {
+            footerChangeState (path) {
+                this.changeState(path);
             }
         }
     };
