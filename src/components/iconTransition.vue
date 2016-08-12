@@ -1,38 +1,48 @@
 <style scoped>
+    @import '../assets/style/common';
+
     /*基本样式*/
     svg {
         width: 100%;
-        height: 100%;
-        transition: all 0.3s ease;
+        height: @width;
+        base-trans();
     }
 
     line {
         stroke-width: 5;
-        transition: all 0.3s ease;
+        base-trans();
     }
 
-    .menu line:nth-child(1) {
-        transform: translate(0, -23px) rotate(0) scale(12, 1);
+    $trans-poss = -23px 0 23px;
+
+    .menu {
+        line {
+            for trans-pos, i in $trans-poss {
+                &:nth-child({i + 1}) {
+                    transform: translate(0, trans-pos) rotate(0) scale(12, 1);
+                }
+            }
+        }
     }
 
-    .menu line:nth-child(2) {
-        transform: translate(0, 0) rotate(0) scale(12, 1);
+    $rot-poss = -135deg 0 135deg;
+
+    cacle-func(rot-pos) {
+        if rot-pos != 0 {
+            transform: translate(0, 0) rotate(rot-pos) scale(12, 1);
+        } else {
+            transform: translate(0, 0) scale(0.01);
+        }
     }
 
-    .menu line:nth-child(3) {
-        transform: translate(0, 23px) rotate(0) scale(12, 1);
-    }
-
-    .cancle line:nth-child(1) {
-        transform: translate(0, 0) rotate(135deg) scale(12, 1);
-    }
-
-    .cancle line:nth-child(2) {
-        transform: translate(0, 0) scale(0.01);
-    }
-
-    .cancle line:nth-child(3) {
-        transform: translate(0, 0) rotate(-135deg) scale(12, 1);
+    .cancle {
+        line {
+            for rot-pos, i in $rot-poss {
+                &:nth-child({i + 1}) {
+                    cacle-func(rot-pos);
+                }
+            }
+        }
     }
 </style>
 <template>

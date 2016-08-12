@@ -1,6 +1,7 @@
 var Path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
+var autoprefixer = require('autoprefixer');
 
 var myAlias = {
     components: Path.join(__dirname, '../src/components'),
@@ -45,8 +46,8 @@ module.exports = {
                 }
             },
             {
-                test: /\.css$/,
-                loader: ExtractTextWebpackPlugin.extract('style-loader', 'css-loader')
+                test: /\.styl$/,
+                loader: ExtractTextWebpackPlugin.extract(['css', 'postcss', 'stylus'])
             },
             {
                 test: /\.(woff|woff2|ttf|eot)$/,
@@ -59,8 +60,16 @@ module.exports = {
         ]
     },
     resolve: {
-        extensions: ['', '.js', '.vue', '.css', '.jpg'],
+        extensions: ['', '.js', '.vue', '.css', '.jpg', '.styl'],
         alias: myAlias
+    },
+    vue: {
+        loaders: {
+            css: 'style!css!postcss!stylus'
+        }
+    },
+    postcss: function() {
+        return [autoprefixer({browsers: ['last 2 versions']})]
     },
     babel: {
         presets: ['es2015', 'stage-0'],

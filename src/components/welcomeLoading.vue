@@ -1,41 +1,40 @@
 <style scoped>
+    @import '../assets/style/common';
+
     /*基本样式*/
     #welcome-loading {
-        position: fixed;
+        position(fixed, $z-index-level-3);
         width: 100%;
         height: 100%;
         top: 0;
         left: 0;
-        background: #673ab7;
-        z-index: 9999;
+        background: $base-puple;
     }
 
     pre {
+        position(absolute);
         text-indent: -4.8rem;
-        position: absolute;
-        z-index: 1;
         left: 50%;
         top: 50%;
-        margin-left: -110px;
-        margin-top: -90px;
-        color: #fff;
-        font-weight: bold;
         height: 180px;
         width: 220px;
+        margin-left: -(@width / 2);
+        margin-top: -(@height / 2);
+        color: $base-white;
+        font-weight: bold;
         padding: 10px;
     }
 
     .skip-text {
-        position: absolute;
+        position(absolute, $z-index-level-3);
         right: 10px;
         top: 10px;
-        color: #fff;
-        z-index: 9999;
+        color: $base-white;
         font-style: italic;
     }
 
     .fade-transition {
-        transition: all 0.5s ease;
+        base-trans()
     }
 
     .fade-leave {

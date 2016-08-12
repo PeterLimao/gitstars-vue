@@ -26,8 +26,9 @@
 
     export default {
         route: {
-            activate () {
+            data ({from}) {
                 this.$dispatch('footerChangeStateCtrl', '/trending');
+                if (/(detail)/g.test(from.path)) this.initScrollPosition();
             }
         },
         vuex: {
@@ -37,6 +38,15 @@
             },
             actions: {
                 setTrendingScrollPosition
+            }
+        },
+        methods: {
+            initScrollPosition () {
+                let dom = this.$el.querySelector('.list-content');
+                let timeout = setTimeout(() => {
+                    dom.scrollTop = this.trendingScrollPosition;
+                    clearTimeout(timeout);
+                }, 100);
             }
         },
         components: {

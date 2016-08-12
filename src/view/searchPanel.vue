@@ -57,8 +57,9 @@
             }
         },
         route: {
-            activate () {
+            data ({from}) {
                 this.$dispatch('footerChangeStateCtrl', '/search');
+                if (/(detail)/g.test(from.path)) this.initScrollPosition();
             }
         },
         vuex: {
@@ -80,6 +81,15 @@
             }
         },
         methods: {
+            initScrollPosition () {
+                let dom = this.$el.querySelector('.list-content');
+                if (!dom) return;
+
+                let timeout = setTimeout(() => {
+                    dom.scrollTop = this.searchScrollPosition;
+                    clearTimeout(timeout);
+                }, 100);
+            },
             tredingSearch (keywords) {
                 this.setLoad(true);
                 this.setSearchLoadmoreIndex(1);

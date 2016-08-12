@@ -1,28 +1,29 @@
 <style>
+    @import '../assets/style/common';
+
     /*基本样式*/
     #loading {
-        position: fixed;
+        position(fixed, $z-index-level-2);
         width: 70px;
-        height: 70px;
+        height: @width;
         left: 50%;
         top: 50%;
-        margin-left: -35px;
-        margin-top: -35px;
-        z-index: 810;
-        background: #fff;
+        margin-left: -(@width / 2);
+        margin-top: -(@width / 2);
+        background: $base-white;
         border-radius: 5px;
     }
 
     .preloader-wrapper {
-        position: absolute;
+        position(absolute);
         left: 50%;
         top: 50%;
         margin-left: -18px;
-        margin-top: -18px;
+        margin-top: @margin-left;
     }
 
     .spinner-layer {
-        border-color: #673ab7;
+        border-color: $base-puple;
     }
 </style>
 <template>

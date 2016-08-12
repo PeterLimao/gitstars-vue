@@ -39,8 +39,9 @@
             }
         },
         route: {
-            activate () {
+            data ({from}) {
                 this.$dispatch('footerChangeStateCtrl', '/stars');
+                if (/(detail)/g.test(from.path)) this.initScrollPosition();
             }
         },
         vuex: {
@@ -64,6 +65,15 @@
             }
         },
         methods: {
+            initScrollPosition () {
+                let dom = this.$el.querySelector('.list-content');
+                if (!dom) return;
+
+                let timeout = setTimeout(() => {
+                    dom.scrollTop = this.starsScrollPosition;
+                    clearTimeout(timeout);
+                }, 100);
+            },
             getStarsList () {
                 this.setLoad(true);
                 this.setStarsList({}).then(() => {

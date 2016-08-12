@@ -1,21 +1,22 @@
 <style scoped>
+    @import '../assets/style/common';
+
     /*基本样式*/
     .nav {
+        position(fixed, $z-index-level-1);
         overflow-y: scroll;
         width: 300px;
-        position: fixed;
         right: 0;
         top: 0;
         height: 100%;
-        z-index: 11;
-        background: #fff;
+        background: $base-white;
     }
 
     i {
-        position: absolute;
+        position(absolute);
         right: 10px;
         top: 10px;
-        color: #673ab7;
+        color: $base-puple;
     }
 
     ul {
@@ -25,7 +26,7 @@
     li {
         text-align: center;
         height: 35px;
-        line-height: 35px;
+        line-height: @height;
     }
 
     /*过渡动画*/

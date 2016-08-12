@@ -1,7 +1,9 @@
 <style scoped>
+    @import '../assets/style/common';
+
     /*基本样式*/
     .card-title {
-        color: #673ab7;
+        color: $base-puple;
         font-size: 20px;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -10,21 +12,24 @@
 
     .card-action {
         display: flex;
+        & > div {
+            display: flex;
+            align-items: center;
+            margin-right: 10px;
+        }
     }
 
-    .card-action > div {
-        display: flex;
-        align-items: center;
-        margin-right: 10px;
+    .card-content {
+        & > div {
+            display: flex;
+            align-items: center;
+        }
     }
 
-    .card-content > div {
-        display: flex;
-        align-items: center;
-    }
-
-    .star-item i {
-        color: #ffeb3b;
+    .star-item {
+        i {
+            color: #ffeb3b;
+        }
     }
 
     .increasing-item {
@@ -33,14 +38,14 @@
 
     img {
         width: 30px;
-        height: 30px;
-        border-radius: 30px;
+        height: @width;
+        border-radius: @width;
         margin-right: 10px;
     }
 
     /*动画样式*/
     .item-transition {
-        transition: all 0.5s ease;
+        base-trans();
     }
 
     .item-enter, .item-leave {
@@ -99,7 +104,6 @@
             },
             setScrollPosition () {
                 let path = this.$route.path;
-                console.log(path);
                 switch (path) {
                     case '/trending':
                         this.$dispatch('setTrendingScrollPosition');
