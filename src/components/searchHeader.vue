@@ -1,59 +1,58 @@
 <style scoped>
-    @import '../assets/style/common';
-
     /*基本样式*/
     header {
-        position(absolute, $z-index-level-0);
         height: 44px;
         display: flex;
+        position: absolute;
         top: 0;
         left: 0;
         width: 100%;
+        z-index: 10;
     }
 
     .search-btn {
         width: 50px;
-        height: @width;
-        position(fixed);
-        background: $base-puple;
-        color: $base-white;
+        height: 50px;
+        background: #673ab7;
         display: flex;
+        color: #fff;
         align-items: center;
         justify-content: center;
-        border-radius: (@width / 2);
+        border-radius: 25px;
+        position: fixed;
         left: 5px;
         top: 5px;
     }
 
     .input-msg {
-        background: $base-white;
+        background: #fff;
         height: 50px;
         margin-top: 5px;
         margin-left: 20px;
         margin-right: 10px;
         width: 290px;
-        border-radius: @height;
-        base-trans();
+        border-radius: 25px;
+        transition: all 0.3s ease;
         display: flex;
         align-items: center;
-        i {
-            margin-right: 5%;
-            color: $base-puple;
-        }
-        input {
-            height: 35px;
-            border-bottom: 0;
-            margin-bottom: 0;
-            margin-left: 37px;
-            margin-right: 10px;
-        }
+    }
+
+    .input-msg input {
+        height: 35px;
+        border-bottom: 0;
+        margin-bottom: 0;
+        margin-left: 37px;
+        margin-right: 10px;
+    }
+
+    .input-msg i {
+        margin-right: 5%;
+        color: #673ab7;
     }
 
     input[type=text]:focus {
-        &:focus {
-            border-bottom-color: $base-puple;
-            box-shadow: 0 1px 0 0 $base-puple;
-        }
+        border-bottom-color: #673ab7;
+        box-shadow: 0 1px 0 0 #673ab7;
     }
 
 </style>

@@ -1,16 +1,14 @@
 <style scoped>
-    @import '../assets/style/common';
-
     /*基本样式*/
     #login {
-        color: $base-puple;
+        color: #673ab7;
         margin: 100px auto;
         text-align: center;
     }
 
     .btn {
         margin-top: 20px;
-        background: $base-puple;
+        background: #673ab7;
     }
 </style>
 <template>

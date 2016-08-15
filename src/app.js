@@ -8,7 +8,7 @@ import VueTouch from 'vue-touch';
 import VueAnimatedList from 'vue-animated-list';
 import Progress from 'vue-progressbar';
 
-import './assets/style/base';
+import './assets/css/base';
 
 Vue.config.debug = process.env.NODE_ENV === 'production' ? false : true;
 

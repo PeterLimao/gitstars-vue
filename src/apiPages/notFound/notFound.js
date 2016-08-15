@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import NotFound from 'components/notFound';
-import '../../assets/style/base';
+import '../../assets/css/base';
 
 new Vue({
     el: 'body',

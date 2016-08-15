@@ -1,44 +1,41 @@
 <style scoped>
-    @import '../assets/style/common';
-
     /*基础样式*/
     header {
-        position(fixed, $z-index-level-0);
         display: flex;
-        color: $base-white;
+        color: #fff;
+        position: fixed;
         top: 0;
         left: 0;
         width: 100%;
+        z-index: 10;
     }
 
-    header {
-        .left, .right {
-            width: 20%;
-            text-align: center;
-            height: 44px;
-            line-height: @height;
-            overflow: hidden;
-            word-wrap: normal;
-            text-overflow: ellipsis;
-        }
+    header .left, header .right{
+        width: 20%;
+        text-align: center;
+        line-height: 44px;
+        height: 44px;
+        overflow: hidden;
+        word-wrap: normal;
+        text-overflow: ellipsis;
     }
 
-    header {
-        .main {
-            width: 60%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: $base-white;
-            font-weight: bold;
-        }
+    .right i {
+        color: #fff;
+        padding-top: 8px;
     }
 
-    .right {
-        i {
-            color: $base-white;
-            padding-top: 8px;
-        }
+    header .main {
+        width: 60%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        font-weight: bold;
+    }
+
+    .vux-tab-item {
+        background: #673ab7;
     }
 </style>
 <template>

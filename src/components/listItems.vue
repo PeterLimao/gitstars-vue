@@ -1,9 +1,7 @@
 <style scoped>
-    @import '../assets/style/common';
-
     /*基本样式*/
     .card-title {
-        color: $base-puple;
+        color: #673ab7;
         font-size: 20px;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -12,24 +10,21 @@
 
     .card-action {
         display: flex;
-        & > div {
-            display: flex;
-            align-items: center;
-            margin-right: 10px;
-        }
     }
 
-    .card-content {
-        & > div {
-            display: flex;
-            align-items: center;
-        }
+    .card-action > div {
+        display: flex;
+        align-items: center;
+        margin-right: 10px;
     }
 
-    .star-item {
-        i {
-            color: #ffeb3b;
-        }
+    .card-content > div {
+        display: flex;
+        align-items: center;
+    }
+
+    .star-item i {
+        color: #ffeb3b;
     }
 
     .increasing-item {
@@ -38,14 +33,14 @@
 
     img {
         width: 30px;
-        height: @width;
-        border-radius: @width;
+        height: 30px;
+        border-radius: 30px;
         margin-right: 10px;
     }
 
     /*动画样式*/
     .item-transition {
-        base-trans();
+        transition: all 0.5s ease;
     }
 
     .item-enter, .item-leave {

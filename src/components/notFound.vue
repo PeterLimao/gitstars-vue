@@ -1,8 +1,6 @@
 <style scoped>
-    @import '../assets/style/common';
-
     #not-found {
-        color: $base-puple;
+        color: #673ab7;
         margin: 100px auto;
         text-align: center;
     }
