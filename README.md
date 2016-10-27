@@ -25,7 +25,14 @@ An webapp to use github apis to view github msgs! (build by Vue.js)
 git clone https://github.com/shinygang/Vue-cnodejs.git
 ```
 
-通过`npm`安装本地服务第三方依赖模块(需要已安装[Node.js](https://nodejs.org/))
+通过`npm`全局安装webpack和eslint(需要已安装[Node.js](https://nodejs.org/))
+
+```shell
+npm install -g webpack
+npm install -g eslint
+```
+
+通过`npm`安装本地服务第三方依赖模块
 
 ```shell
 npm install
