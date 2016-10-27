@@ -1,5 +1,5 @@
 # gitstars-vue
-An webapp to use github apis to view github msgs! (build by Vue.js)
+ > An webapp to use github and gitstars apis to view github msgs! (build by Vue.js)
 
 ## 截图
 
@@ -8,8 +8,8 @@ An webapp to use github apis to view github msgs! (build by Vue.js)
 - 线上服: [https://gitstars.cn](https://gitstars.cn)
 
 ##使用的Api
-- [github api]()
-- [gitstars api]()
+- [github api](https://developer.github.com/v3/)
+- [gitstars api](https://github.com/cnzx219/gitstars-openapi) :p
 
 ## 技术栈 (点击访问详细)
 - [Vue.js@1.0.26](http://cn.vuejs.org/)
