@@ -1,0 +1,12 @@
+{
+    "root": true,
+    "parser": "babel-eslint",
+    "extends": "vue",
+    "plugins": [
+        "vue"
+    ],
+    "rules": {
+        "semi": ["error", "always"],
+        "indent": ["error", 4]
+    }
+}

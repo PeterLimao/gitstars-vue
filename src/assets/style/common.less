@@ -1,0 +1,23 @@
+@base-puple: #7569b2;
+@base-white: #ffffff;
+@base-gray: #f9f9f9;
+
+@z-index-level-0: 1111;
+@z-index-level-1: 2222;
+@z-index-level-2: 3333;
+@z-index-level-3: 4444;
+@z-index-level-4: 8888;
+
+.position(@pos, @index: 1) {
+    position: @pos;
+    z-index: @index;
+}
+
+.list-content-style(@padding-top: 50px) {
+    padding: @padding-top 10px;
+    overflow-y: scroll;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    -webkit-overflow-scrolling: touch;
+}

@@ -3,14 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <link href="//cdn.bootcss.com/materialize/0.97.6/css/materialize.min.css" rel="stylesheet">
     <title>GitStars</title>
 </head>
-<body style="margin: 0">
-    <loading v-if="!fileContent"></loading>
-    <file-panel-file :file-content="fileContent" :pre-style="{'text-indent': '-4rem'}" v-else></file-panel-file>
-    <script>
-        var filePath = 'https://raw.githubusercontent.com/juliangarnier/anime/master/anime.js';
-    </script>
+<body :style="style">
+    <loading v-if="isLoading"></loading>
+    <readme :owner="owner" :repo="repo" use-type="api" v-if="isReadme"></readme>
+    <file-panel-file v-else></file-panel-file>
+    <file-panel-pic v-if="isPic" :pic-src="picSrc"></file-panel-pic>
+    <not-found v-if="isNotFound" :type="notFoundType"></not-found>
 </body>
 </html>

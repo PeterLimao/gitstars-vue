@@ -15,10 +15,6 @@
     import WelcomeLoading from 'components/welcomeLoading';
     import Progress from 'vue-progressbar/vue-progressbar.vue';
     import Store from 'store';
-    import {setLanList} from 'actions';
-    import {setLoad} from 'actions';
-    import {setTredingList} from 'actions';
-    import {setHotwords} from 'actions';
 
     export default {
         data () {
@@ -35,18 +31,7 @@
                         height: '3px'
                     }
                 }
-            }
-        },
-        vuex: {
-            getters: {
-                isLoad: (state) => state.isLoad
-            },
-            actions: {
-                setLanList,
-                setLoad,
-                setTredingList,
-                setHotwords
-            }
+            };
         },
         created () {
             this.getHttp();
@@ -54,14 +39,29 @@
         ready () {
             this.$progress.setHolder(this.myProgress);
         },
+        computed: {
+            isLoad () {
+                return this.$store.getters.getLoad;
+            }
+        },
         methods: {
             getHttp () {
                 Promise.all([
                     this.setLanList(),
-                    this.setTredingList(),
                     this.setHotwords()
                 ]).then((responseList) => {
                     this.setLoad(false);
+                });
+            },
+            setLanList () {
+                return this.$store.dispatch('setLanList');
+            },
+            setHotwords () {
+                return this.$store.dispatch('setHotwords');
+            },
+            setLoad (isLoad) {
+                this.$store.dispatch('setLoad', {
+                    isLoad
                 });
             }
         },

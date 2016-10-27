@@ -21,7 +21,7 @@ createDirCmd();
 Config.output.publicPath = '';
 
 Config.plugins = (Config.plugins || []).concat([
-    new ExtractTextWebpackPlugin('css/[name].css'),
+    new ExtractTextWebpackPlugin('style/[name].[hash:7].css'),
     new Webpack.DefinePlugin({
         'process.env': {
             NODE_ENV: '"production"'
