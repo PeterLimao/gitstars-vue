@@ -2,14 +2,12 @@
  > An webapp to use github and gitstars apis to view github msgs! (build by Vue.js)
 
 ## 截图
-<div style="display: flex">
-<img src="https://github.com/PeterLimao/gitstars-vue/raw/master/docs/img/WechatIMG1.jpeg" style="width: 200px"/>
+<img src="https://github.com/PeterLimao/gitstars-vue/raw/master/docs/img/WechatIMG1.jpeg" width="300"/>
 
-<img src="https://github.com/PeterLimao/gitstars-vue/raw/master/docs/img/WechatIMG2.jpeg" style="width: 200px"/>
+<img src="https://github.com/PeterLimao/gitstars-vue/raw/master/docs/img/WechatIMG2.jpeg" width="300"/>
 
-<img src="https://github.com/PeterLimao/gitstars-vue/raw/master/docs/img/WechatIMG3.jpeg" style="width: 200px"/>
+<img src="https://github.com/PeterLimao/gitstars-vue/raw/master/docs/img/WechatIMG3.jpeg" width="300"/>
 
-</div>
 ## 访问地址
 - 测试服: [http://test01.gitstars.cn](http://test01.gitstars.cn)
 - 线上服: [https://gitstars.cn](https://gitstars.cn)
