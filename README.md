@@ -51,7 +51,7 @@ npm run build
 
 
 ## Todos
-- 完善单元测试
+- 完善单元测试 (:p 大坑)
 - 使用Vue.js@2.x和Vue-Router@2.x重构项目
 
 ## LICENCE
