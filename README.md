@@ -7,6 +7,10 @@ An webapp to use github apis to view github msgs! (build by Vue.js)
 - 测试服: [http://test01.gitstars.cn](http://test01.gitstars.cn)
 - 线上服: [https://gitstars.cn](https://gitstars.cn)
 
+##使用的Api
+- [github api]()
+- [gitstars api]()
+
 ## 技术栈 (点击访问详细)
 - [Vue.js@1.0.26](http://cn.vuejs.org/)
 - [Vue-router@0.7.13](https://github.com/vuejs/vue-router)
@@ -22,7 +26,7 @@ An webapp to use github apis to view github msgs! (build by Vue.js)
 项目地址：（`git clone`）
 
 ```shell
-git clone https://github.com/shinygang/Vue-cnodejs.git
+git clone https://github.com/PeterLimao/gitstars-vue.git
 ```
 
 通过`npm`全局安装webpack和eslint(需要已安装[Node.js](https://nodejs.org/))
